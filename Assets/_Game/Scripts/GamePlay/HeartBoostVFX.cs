@@ -5,6 +5,7 @@ public class HeartBoostVFX : MonoBehaviour
 {
     public GameObject boostVFX;
 
+    [System.Obsolete]
     void Update()
     {
         if (boostVFX == null) return;

@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 [DisallowMultipleComponent]
 public class HeartWithEnergy : MonoBehaviour
 {
     public static bool IsBoostingGlobal { get; private set; }
+
     [Header("Rotation Settings")]
     public Transform center;           
     public float normalSpeed = 30f;    
@@ -88,7 +90,11 @@ public class HeartWithEnergy : MonoBehaviour
         UpdateBoostVFX(isBoosting);
 
         _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, speedLerp * Time.deltaTime);
-        transform.RotateAround(center.position, Vector3.up, _currentSpeed * Time.deltaTime);
+
+        if (center != null)
+        {
+            transform.RotateAround(center.position, Vector3.up, _currentSpeed * Time.deltaTime);
+        }
 
         UpdateEnergyUI();
         HandleFade(isPressing);
@@ -113,7 +119,14 @@ public class HeartWithEnergy : MonoBehaviour
 
     bool IsPressing()
     {
-        return Input.GetMouseButton(0) || Input.touchCount > 0;
+        if (InputHelper.IsPointerOverUI())
+            return false;
+
+#if UNITY_EDITOR || UNITY_STANDALONE
+        return Input.GetMouseButton(0);
+#else
+        return Input.touchCount > 0;
+#endif
     }
 
     void HandleEnergyAndSpeed(bool isPressing)

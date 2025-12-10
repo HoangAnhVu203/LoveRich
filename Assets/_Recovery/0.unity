@@ -158,12 +158,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49981113}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.792141, y: -5.1474457, z: 3.0138016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2006697059}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &309573597
 GameObject:
@@ -570,38 +570,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480167257}
   m_CullTransparentMesh: 1
---- !u!1 &531255245
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 531255246}
-  m_Layer: 0
-  m_Name: HeartRoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &531255246
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531255245}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.66325, y: 0, z: -3.64714}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1261211277}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &552751381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1110,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.9658306, b: 0.8726415, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1182,7 +1150,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1205,13 +1173,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6830127, y: -0.18301266, z: 0.18301266, w: 0.6830127}
-  m_LocalPosition: {x: 0, y: 7.2, z: 0}
+  m_LocalRotation: {x: 0.48587996, y: -0.22369075, z: 0.13019112, w: 0.8348254}
+  m_LocalPosition: {x: -0.16, y: 7.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.4, y: -30, z: 0}
 --- !u!1 &788620871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,7 +1313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1427,13 +1395,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 7726844137677545709, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
-  spawnParent: {fileID: 531255246}
+  spawnParent: {fileID: 1261211277}
   center: {fileID: 604603661}
   followSmooth: 8
   heartPinkPrefab: {fileID: 7726844137677545709, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
   heartLightBluePrefab: {fileID: 1751861951543848255, guid: 38b460128b04e437bb52c00e5770570b, type: 3}
   needCountToMerge: 3
   pinkLayerName: HeartPink
+  hearts:
+  - {fileID: 1261211277}
 --- !u!1 &920655060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1519,7 @@ MonoBehaviour:
   hearts:
   - {fileID: 1261211277}
   sampleDistance: 0.05
-  pointsPerHeart: 18
+  pointsPerHeart: 15
   normalFollowPosLerp: 15
   normalFollowRotLerp: 15
   boostFollowPosLerp: 40
@@ -2012,6 +1982,19 @@ MonoBehaviour:
   fadedAlpha: 0
   boostVFX: {fileID: 1562774898}
   clearOnStop: 1
+--- !u!114 &1261211293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261211276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3f2ef25b5bf45048487dc1a1e173d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeartUnit
+  type: 0
 --- !u!1 &1496378240
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,7 +2621,6 @@ Transform:
   m_Children:
   - {fileID: 888833078}
   - {fileID: 938002309}
-  - {fileID: 49981115}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014367781
@@ -2927,7 +2909,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 531255246}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3540750101855917390, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
       propertyPath: center
@@ -2935,15 +2917,15 @@ PrefabInstance:
       objectReference: {fileID: 604603661}
     - target: {fileID: 5171163513018769225, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.33675
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5171163513018769225, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.41
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 5171163513018769225, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.64714
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5171163513018769225, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2984,6 +2966,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7726844137677545709, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1261211287}
+    - targetCorrespondingSourceObject: {fileID: 7726844137677545709, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1261211293}
   m_SourcePrefab: {fileID: 100100000, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -2991,10 +2976,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 2230569504518381383}
   - {fileID: 2005659453}
   - {fileID: 920655063}
   - {fileID: 604603661}
   - {fileID: 1496378244}
   - {fileID: 1669139694}
+  - {fileID: 49981115}
   - {fileID: 2006697059}
-  - {fileID: 531255246}

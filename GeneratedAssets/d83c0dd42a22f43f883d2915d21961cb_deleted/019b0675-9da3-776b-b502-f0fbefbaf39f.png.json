@@ -1,0 +1,20 @@
+{
+    "asset": "d83c0dd42a22f43f883d2915d21961cb",
+    "fileName": "019b0675-9da3-776b-b502-f0fbefbaf39f.png",
+    "prompt": "cute slime monster",
+    "negativePrompt": "",
+    "model": "0409c144-da57-44a7-b531-72bc9a32fa4f",
+    "modelName": "GPT Image 1 - High",
+    "customSeed": -1,
+    "w3CTraceId": "176de069829cf441563c1b3fc441dc9b",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
