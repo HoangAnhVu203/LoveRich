@@ -4,13 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Gate : MonoBehaviour
 {
-    [Header("Tiền nhận mỗi lần Heart đi qua")]
     public int moneyPerHeart = 10;
 
     [System.Serializable]
     public class HeartVFXEntry
     {
-        [Tooltip("Tên Layer của Heart, ví dụ: HeartRed, HeartBlue...")]
         public string heartLayerName;
 
         [Tooltip("GameObject VFX tương ứng (con của Gate)")]

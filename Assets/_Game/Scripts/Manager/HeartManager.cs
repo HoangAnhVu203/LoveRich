@@ -12,13 +12,12 @@ public class HeartManager : MonoBehaviour
     public float followSmooth = 8f;
 
     [Header("Merge Settings")]
-    public GameObject heartPinkPrefab;        // prefab HeartPink
-    public GameObject heartLightBluePrefab;   // prefab HeartLightBlue
-    public int needCountToMerge = 3;          // cần mấy heart để merge (3)
+    public GameObject heartPinkPrefab;       
+    public GameObject heartLightBluePrefab; 
+    public int needCountToMerge = 3;       
 
     [Tooltip("Tên Layer dùng cho HeartPink (để nhận diện)")]
-    public string pinkLayerName = "HeartPink"; // đặt đúng layer của HeartPink
-
+    public string pinkLayerName = "HeartPink"; 
 
     void Awake()
     {
@@ -76,7 +75,6 @@ public class HeartManager : MonoBehaviour
 
     // ======== MERGE PINK → LIGHT BLUE ========
 
-    // Gắn hàm này vào Button "Merge"
     [System.Obsolete]
     public void MergeLast3Pink()
     {
@@ -100,7 +98,6 @@ public class HeartManager : MonoBehaviour
             return;
         }
 
-        // Lấy 3 heart cuối theo count ban đầu
         int i0 = count - 3;
         int i1 = count - 2;
         int i2 = count - 1;
@@ -122,8 +119,7 @@ public class HeartManager : MonoBehaviour
         Vector3 spawnPos = h1.position;
         Quaternion spawnRot = h1.rotation;
 
-        // XÓA 3 heart cuối
-        // Lưu ý: dùng count ban đầu, không dùng list.Count trong điều kiện
+        // XÓA 3 heart cuối (dùng count ban đầu)
         for (int i = count - 1; i >= count - 3; i--)
         {
             Transform h = list[i];
@@ -132,32 +128,51 @@ public class HeartManager : MonoBehaviour
                 Destroy(h.gameObject);
         }
 
-        // Tạo heart mới
         if (heartLightBluePrefab == null)
         {
-            Debug.LogWarning("[Merge] Chưa gán prefab heartLightBluePrefab.");
             return;
         }
 
         GameObject newHeart = Instantiate(
-        heartLightBluePrefab,
-        spawnPos,
-        spawnRot,
-        spawnParent 
+            heartLightBluePrefab,
+            spawnPos,
+            spawnRot,
+            spawnParent
         );
 
-        // Copy scale chuẩn
         newHeart.transform.localScale = h1.localScale;
 
-        // follower không cần energy
+        // Xử lý HeartWithEnergy cho heart mới
         var energy = newHeart.GetComponent<HeartWithEnergy>();
-        if (energy != null)
-            Destroy(energy);
 
-        // Gắn vào chuỗi
+        // Nếu sau khi xoá 3 con, list đang RỖNG → heart mới là LEADER
+        if (list.Count == 0)
+        {
+            if (energy == null)
+            {
+                energy = newHeart.AddComponent<HeartWithEnergy>();
+            }
+
+            // Leader phải được phép boost
+            energy.enabled = true;
+
+            // Gán center nếu cần
+            if (energy.center == null && center != null)
+                energy.center = center;
+        }
+        else
+        {
+            // Vẫn còn leader cũ ở list[0] -> heart mới chỉ là follower
+            if (energy != null)
+                energy.enabled = false;
+        }
+
+        // Gắn vào chuỗi (last)
         list.Add(newHeart.transform);
 
+        Debug.Log($"[Merge] Merge OK: trước {count} → sau {list.Count}");
     }
+
 
     // ======== Helper lấy leader / last từ ChainManager ========
 

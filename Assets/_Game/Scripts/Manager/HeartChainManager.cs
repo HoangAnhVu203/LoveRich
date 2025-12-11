@@ -9,10 +9,10 @@ public class HeartChainManager : MonoBehaviour
 
     [Header("History theo khoảng cách")]
     [Tooltip("Khoảng cách (world units) giữa 2 mẫu history của leader")]
-    public float sampleDistance = 0.05f;      // 5cm
+    public float sampleDistance = 0.05f; 
 
     [Tooltip("Số mẫu history giữa 2 heart liên tiếp")]
-    public float pointsPerHeart = 10f;        // tim cách nhau ~ sampleDistance * pointsPerHeart
+    public float pointsPerHeart = 10f;      
 
     [Header("Độ mượt follower bám theo (bình thường)")]
     public float normalFollowPosLerp = 15f;
@@ -33,7 +33,6 @@ public class HeartChainManager : MonoBehaviour
 
     List<Pose> _history = new List<Pose>();
 
-    // cho distance-based history
     Vector3 _lastRecordPos;
     bool _hasLastRecordPos;
 
@@ -144,17 +143,15 @@ public class HeartChainManager : MonoBehaviour
         float sqrDist = (currentPos - _lastRecordPos).sqrMagnitude;
         float minSqr = sampleDistance * sampleDistance;
 
-        // chỉ khi leader đi đủ xa mới thêm 1 mẫu history mới
         if (sqrDist >= minSqr)
         {
             Pose p;
             p.pos = currentPos;
             p.rot = leader.rotation;
 
-            _history.Insert(0, p); // mới nhất ở đầu
+            _history.Insert(0, p); 
             _lastRecordPos = currentPos;
 
-            // giữ history vừa đủ dài
             int maxPoints = Mathf.CeilToInt(hearts.Count * pointsPerHeart) + 5;
             if (_history.Count > maxPoints)
             {
@@ -163,14 +160,13 @@ public class HeartChainManager : MonoBehaviour
         }
     }
 
-    // gọi khi spawn thêm heart
     public void RegisterHeart(Transform newHeart)
     {
 
-        if (newHeart.parent != transform)
-        {
-            newHeart.SetParent(transform);
-        }
+        // if (newHeart.parent != transform)
+        // {
+        //     newHeart.SetParent(transform);
+        // }
         
         if (!hearts.Contains(newHeart))
         {

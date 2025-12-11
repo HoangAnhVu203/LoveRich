@@ -1,19 +1,26 @@
 using UnityEngine;
 
-public enum HeartType
+public enum HeartTypes
 {
     Pink,
     LightBlue,
     Orange,
     Purple, 
-    Green,
+    LightGreen,
     Yellow,
     Blue,
-    Red
+    Red, 
+    Black, 
+    Grey, 
+    Green,
+    PaleYellow,
+    DarkRed,
+    Brown, 
+    Mint
 }
 
 [DisallowMultipleComponent]
 public class HeartUnit : MonoBehaviour
 {
-    public HeartType type;
+    public HeartTypes type;
 }
