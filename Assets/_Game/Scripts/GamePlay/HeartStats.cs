@@ -16,7 +16,17 @@ public enum HeartType
     PaleYellow,
     DarkRed,
     Brown, 
-    Mint
+    Mint, 
+    lightRed, 
+    LightPurple,
+    DrarkBlue,
+    LightPink,
+    LightGreen_2,
+    LightPink_2,
+    CharcoalBlue,
+    LightYellow,
+    EarthyRed,
+    DarkYellow
 }
 
 [DisallowMultipleComponent]

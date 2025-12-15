@@ -116,7 +116,7 @@ public class HeartWithEnergy : MonoBehaviour
         }
         else if (center != null)
         {
-            transform.RotateAround(center.position, Vector3.up, _currentSpeed * Time.deltaTime);
+            transform.RotateAround(center.position, Vector3.down, _currentSpeed * Time.deltaTime);
         }
 
         UpdateEnergyUI();

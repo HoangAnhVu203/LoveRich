@@ -130,7 +130,7 @@ MonoBehaviour:
   weight: 6
   moneyValue: 4000
   gateHitVFX: {fileID: 3240641824042715274, guid: a671aa925d9034c07be083b2bf7f0ca6, type: 3}
-  mergeResultPrefab: {fileID: 4545787873171780463, guid: 6381bd374901b4c0c8ab0ae2e3d75295, type: 3}
+  mergeResultPrefab: {fileID: 6435257644260775010, guid: eb57efb0029c948e7a709ba1f2d35a53, type: 3}
 --- !u!1001 &362863202435377834
 PrefabInstance:
   m_ObjectHideFlags: 0
