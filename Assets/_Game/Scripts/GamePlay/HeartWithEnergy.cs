@@ -6,18 +6,20 @@ public class HeartWithEnergy : MonoBehaviour
 {
     public static bool IsBoostingGlobal { get; private set; }
 
-    [Header("Path / Rotation Settings")]
-    public LoopPath path;
+    [Header("Movement")]
+    public bool driveMovement = false;
+
+    [Header("Path / Center refs (optional)")]
+    public SplinePath path;
     public Transform center;
 
+    [Header("Speed")]
     public float normalSpeed = 30f;
     public float boostSpeed = 100f;
     public float speedLerp = 5f;
 
     [Header("Energy Bar UI (SHARED)")]
-    [Tooltip("RectTransform của thanh fill (Image)")]
     public RectTransform energyBar;
-    [Tooltip("Root UI (để fade/ẩn hiện). Thường là parent của energyBar")]
     public Transform barRoot;
     public Vector3 barWorldOffset = new Vector3(0, -1.5f, 0);
 
@@ -26,12 +28,12 @@ public class HeartWithEnergy : MonoBehaviour
     public float drainPerSecond = 50f;
     public float refillPerSecond = 40f;
 
-    [Header("Blur")]
+    [Header("Fade")]
     public float fadeDelay = 20f;
     public float fadeSpeed = 2f;
     [Range(0f, 1f)] public float fadedAlpha = 0f;
 
-    [Header("Boost VFX (cho heart này)")]
+    [Header("Boost VFX")]
     public ParticleSystem boostVFX;
     public bool clearOnStop = true;
 
@@ -39,50 +41,16 @@ public class HeartWithEnergy : MonoBehaviour
     float _currentSpeed;
     float _targetSpeed;
     float _lastPressTime;
-
     float _distanceOnPath;
 
     Image _energyImage;
     CanvasGroup _canvasGroup;
     Camera _mainCam;
 
-    public void BindUI(RectTransform sharedEnergyBar, Transform sharedBarRoot, Transform sharedCenter)
-    {
-        energyBar = sharedEnergyBar;
-        barRoot = sharedBarRoot;
-        center = sharedCenter;
-        _energyImage = null;
-        if (energyBar != null) _energyImage = energyBar.GetComponent<Image>();
-
-        if (barRoot != null)
-        {
-            _canvasGroup = barRoot.GetComponent<CanvasGroup>();
-            if (_canvasGroup == null) _canvasGroup = barRoot.gameObject.AddComponent<CanvasGroup>();
-        }
-
-        if (_mainCam == null) _mainCam = Camera.main;
-
-        UpdateEnergyUI();
-        FollowSelfForEnergyBar();
-    }
-
     void Awake()
     {
         _mainCam = Camera.main;
-
-        if (energyBar != null) _energyImage = energyBar.GetComponent<Image>();
-
-        if (barRoot != null)
-        {
-            _canvasGroup = barRoot.GetComponent<CanvasGroup>();
-            if (_canvasGroup == null) _canvasGroup = barRoot.gameObject.AddComponent<CanvasGroup>();
-        }
-    }
-
-    void OnEnable()
-    {
-        FollowSelfForEnergyBar();
-        UpdateEnergyUI();
+        CacheUIRefs();
     }
 
     void Start()
@@ -90,19 +58,37 @@ public class HeartWithEnergy : MonoBehaviour
         _currentEnergy = maxEnergy;
         _currentSpeed = normalSpeed;
         _targetSpeed = normalSpeed;
+        _lastPressTime = Time.time;
 
         if (_energyImage != null) _energyImage.fillAmount = 1f;
         if (_canvasGroup != null) _canvasGroup.alpha = 1f;
+    }
 
-        _lastPressTime = Time.time;
+    public void BindUI(RectTransform sharedBar, Transform sharedRoot, Transform sharedCenter)
+    {
+        energyBar = sharedBar;
+        barRoot = sharedRoot;
+        if (center == null) center = sharedCenter;
 
-        if (path != null && path.TotalLength > 0f)
+        CacheUIRefs();
+
+        if (_energyImage != null)
+            _energyImage.fillAmount = Mathf.Clamp01(_currentEnergy / maxEnergy);
+
+        if (_canvasGroup != null)
+            _canvasGroup.alpha = 1f;
+
+        FollowSelfForEnergyBar();
+    }
+
+    void CacheUIRefs()
+    {
+        if (energyBar != null) _energyImage = energyBar.GetComponent<Image>();
+
+        if (barRoot != null)
         {
-            _distanceOnPath = 0f;
-            Vector3 pos, fwd;
-            path.SampleAtDistance(_distanceOnPath, out pos, out fwd);
-            transform.position = pos;
-            transform.rotation = Quaternion.LookRotation(fwd, Vector3.up);
+            _canvasGroup = barRoot.GetComponent<CanvasGroup>();
+            if (_canvasGroup == null) _canvasGroup = barRoot.gameObject.AddComponent<CanvasGroup>();
         }
     }
 
@@ -122,13 +108,19 @@ public class HeartWithEnergy : MonoBehaviour
 
         _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, speedLerp * Time.deltaTime);
 
-        if (path != null && path.TotalLength > 0f)
+        if (driveMovement)
         {
-            MoveAlongPath();
-        }
-        else if (center != null)
-        {
-            transform.RotateAround(center.position, Vector3.down, _currentSpeed * Time.deltaTime);
+            if (path != null && path.TotalLength > 0f)
+            {
+                _distanceOnPath += _currentSpeed * Time.deltaTime;
+                path.SampleAtDistance(_distanceOnPath, out var pos, out var fwd);
+                transform.position = pos;
+                transform.rotation = Quaternion.LookRotation(fwd, Vector3.up);
+            }
+            else if (center != null)
+            {
+                transform.RotateAround(center.position, Vector3.down, _currentSpeed * Time.deltaTime);
+            }
         }
 
         UpdateEnergyUI();
@@ -156,14 +148,11 @@ public class HeartWithEnergy : MonoBehaviour
         if (isPressing && _currentEnergy > 0f)
         {
             _targetSpeed = boostSpeed;
-            _currentEnergy -= drainPerSecond * Time.deltaTime;
-            _currentEnergy = Mathf.Max(0f, _currentEnergy);
+            _currentEnergy = Mathf.Max(0f, _currentEnergy - drainPerSecond * Time.deltaTime);
         }
-
-        if (!isPressing && _currentEnergy < maxEnergy)
+        else if (!isPressing && _currentEnergy < maxEnergy)
         {
-            _currentEnergy += refillPerSecond * Time.deltaTime;
-            _currentEnergy = Mathf.Min(maxEnergy, _currentEnergy);
+            _currentEnergy = Mathf.Min(maxEnergy, _currentEnergy + refillPerSecond * Time.deltaTime);
         }
     }
 
@@ -200,31 +189,27 @@ public class HeartWithEnergy : MonoBehaviour
         {
             if (boostVFX.isPlaying)
             {
-                if (clearOnStop) boostVFX.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-                else boostVFX.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                boostVFX.Stop(true, clearOnStop
+                    ? ParticleSystemStopBehavior.StopEmittingAndClear
+                    : ParticleSystemStopBehavior.StopEmitting);
             }
         }
     }
 
-    void MoveAlongPath()
-    {
-        _distanceOnPath += _currentSpeed * Time.deltaTime;
-
-        Vector3 pos, fwd;
-        path.SampleAtDistance(_distanceOnPath, out pos, out fwd);
-
-        transform.position = pos;
-        transform.rotation = Quaternion.LookRotation(fwd, Vector3.up);
-    }
-
     void FollowSelfForEnergyBar()
     {
-        if (energyBar == null || _mainCam == null) return;
+        if (_mainCam == null) _mainCam = Camera.main;
+        if (_mainCam == null) return;
+
+        var target = barRoot != null ? barRoot : (Transform)energyBar;
+        if (target == null) return;
 
         Vector3 worldPos = transform.position + barWorldOffset;
         Vector3 screenPos = _mainCam.WorldToScreenPoint(worldPos);
 
-        energyBar.position = screenPos;
-        if (barRoot != null) barRoot.position = screenPos;
+        target.position = screenPos;
+
+        if (energyBar != null && (Transform)energyBar != target)
+            energyBar.position = screenPos;
     }
 }

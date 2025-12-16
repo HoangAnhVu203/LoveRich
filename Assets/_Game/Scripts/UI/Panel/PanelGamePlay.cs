@@ -76,4 +76,9 @@ public class PanelGamePlay : UICanvas
         HeartManager.Instance.MergeAnyTriple();
         ForceRefreshMergeButton();
     }
+
+    public void NextRoadBTN()
+    {
+        RoadManager.Instance?.NextRoad();
+    }
 }

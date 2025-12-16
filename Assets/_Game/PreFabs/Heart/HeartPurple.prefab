@@ -129,7 +129,7 @@ MonoBehaviour:
   type: 3
   weight: 4
   moneyValue: 256
-  gateHitVFX: {fileID: 3240641824042715274, guid: a671aa925d9034c07be083b2bf7f0ca6, type: 3}
+  gateHitVFX: {fileID: 7833574299474882447, guid: 8c36cecb32e444c4297202c5cd67b786, type: 3}
   mergeResultPrefab: {fileID: 7947657194155564546, guid: a9865714147c243b0bf2a196a9802a58, type: 3}
 --- !u!1001 &1428996691394195454
 PrefabInstance:

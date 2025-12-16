@@ -20,12 +20,17 @@ public class Gate : MonoBehaviour
 
         if (stats.gateHitVFX != null)
         {
-            var vfx = Instantiate(stats.gateHitVFX, other.transform.position, stats.gateHitVFX.transform.rotation);
+            Instantiate(
+                stats.gateHitVFX,
+                other.transform.position,
+                stats.gateHitVFX.transform.rotation
+            );
         }
 
+        
         if (chain != null && other.transform == chain.GetLeader())
         {
-            rider?.PlayGateHit();
+            rider?.PlayGateHit(); // trong đây đã spawn VFX nhân vật
         }
     }
 }

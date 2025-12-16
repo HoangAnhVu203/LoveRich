@@ -17,10 +17,10 @@ public class LoopPath : MonoBehaviour
 
     public void RebuildDistanceTable()
     {
-        if (points.Count < 2)
+        if (points == null || points.Count < 2)
         {
             _cumDistances = null;
-            _totalLength = 0;
+            _totalLength = 0f;
             return;
         }
 
@@ -35,26 +35,19 @@ public class LoopPath : MonoBehaviour
             _cumDistances[i] = dist;
         }
 
-        // đóng vòng: điểm cuối nối lại điểm đầu
         dist += Vector3.Distance(points[n - 1].position, points[0].position);
         _totalLength = dist;
     }
 
-    /// <summary>
-    /// Lấy vị trí + hướng trên path theo khoảng cách dọc đường (distanceAlongPath).
-    /// distance sẽ tự wrap quanh vòng.
-    /// </summary>
     public void SampleAtDistance(float distance, out Vector3 pos, out Vector3 forward)
     {
         pos = Vector3.zero;
         forward = Vector3.forward;
 
-        if (points.Count < 2 || _totalLength <= 0f) return;
+        if (points == null || points.Count < 2 || _totalLength <= 0f) return;
 
-        // đưa distance về [0, totalLength)
         distance = Mathf.Repeat(distance, _totalLength);
 
-        // tìm đoạn [Pi, P(i+1)] chứa distance
         int n = points.Count;
         float segmentStartDist = 0f;
 
@@ -69,6 +62,7 @@ public class LoopPath : MonoBehaviour
 
                 Transform a = points[(i - 1) % n];
                 Transform b = points[i % n];
+                if (a == null || b == null) return;
 
                 Vector3 aPos = a.position;
                 Vector3 bPos = b.position;
@@ -81,13 +75,11 @@ public class LoopPath : MonoBehaviour
             segmentStartDist = segmentEndDist;
         }
 
-        // fallback
         pos = points[0].position;
         forward = (points[1].position - points[0].position).normalized;
     }
 
 #if UNITY_EDITOR
-    // vẽ gizmo để dễ chỉnh đường
     void OnDrawGizmos()
     {
         if (points == null || points.Count < 2) return;
@@ -98,10 +90,7 @@ public class LoopPath : MonoBehaviour
         {
             Transform a = points[i];
             Transform b = points[(i + 1) % n];
-            if (a != null && b != null)
-            {
-                Gizmos.DrawLine(a.position, b.position);
-            }
+            if (a != null && b != null) Gizmos.DrawLine(a.position, b.position);
         }
     }
 #endif

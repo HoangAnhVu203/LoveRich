@@ -2,20 +2,34 @@ using UnityEngine;
 
 public class RiderAnimator : MonoBehaviour
 {
-    [SerializeField] Animator animator;
-    static readonly int GateHit = Animator.StringToHash("GateHit");
+    public Animator animator;
 
-    void Awake()
-    {
-        if (animator == null) animator = GetComponentInChildren<Animator>(true);
-    }
+    [Header("Money / Action VFX")]
+    public GameObject actionVFX;          
+    public Transform vfxFollowPoint;      
+    public float vfxLifeTime = 2f;
+
+    static readonly int GateHit = Animator.StringToHash("GateHit");
 
     public void PlayGateHit()
     {
-        Debug.Log("[Rider] Hit gate");
-        if (animator == null) return;
+        animator?.SetTrigger(GateHit);
+        PlayActionVFX();
+    }
 
-        animator.ResetTrigger(GateHit);
-        animator.SetTrigger(GateHit);
+    void PlayActionVFX()
+    {
+        if (actionVFX == null || vfxFollowPoint == null) return;
+
+        var vfx = Instantiate(
+            actionVFX,
+            vfxFollowPoint.position,
+            vfxFollowPoint.rotation
+        );
+
+        // cho VFX đi theo nhân vật
+        vfx.transform.SetParent(vfxFollowPoint);
+
+        Destroy(vfx, vfxLifeTime);
     }
 }
