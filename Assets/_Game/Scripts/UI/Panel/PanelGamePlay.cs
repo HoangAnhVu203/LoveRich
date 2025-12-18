@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelGamePlay : UICanvas
 {
@@ -10,14 +11,32 @@ public class PanelGamePlay : UICanvas
     float _nextCheckTime;
     bool _lastCanMerge;
 
+    public Button boostBtn;
+    public Text labelText;
+    private string normalText = "Boost Update";
+    private string maxText = "Boost Max LV";
+
+    [Header("UI")]
+    public Image iconImage;
+
+
+    [Header("Visual when disabled")]
+    public Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+
+    Image _btnImage;
+
     void Awake()
     {
+        if (boostBtn == null) boostBtn = GetComponent<Button>();
+        _btnImage = boostBtn.GetComponent<Image>();
         _chain = FindObjectOfType<HeartChainManager>();
     }
-
+    
     void OnEnable()
     {
+        Refresh();
         ForceRefreshMergeButton();
+        RefreshState();
     }
 
     void Update()
@@ -64,6 +83,96 @@ public class PanelGamePlay : UICanvas
         }
         return false;
     }
+
+    
+    public void OnClickUpgradeDrain()
+    {
+        var chain = FindObjectOfType<HeartChainManager>();
+        if (chain == null || chain.GetLeader() == null) return;
+
+        var energy = chain.GetLeader().GetComponent<HeartWithEnergy>();
+        if (energy == null) return;
+
+        bool success = energy.TryUpgradeDrain();
+        if (!success)
+        {
+            SetMaxState();
+            return;
+        }
+
+        RefreshState();
+    }
+
+    void RefreshState()
+    {
+        var chain = FindObjectOfType<HeartChainManager>();
+        if (chain == null || chain.GetLeader() == null) return;
+
+        var energy = chain.GetLeader().GetComponent<HeartWithEnergy>();
+        if (energy == null) return;
+
+        if (energy.IsDrainUpgradeMaxed())
+            SetMaxState();
+        else
+            SetNormalState();
+    }
+
+    void SetNormalState()
+    {
+        if (labelText != null)
+            labelText.text = normalText;
+
+        if (boostBtn != null)
+            boostBtn.interactable = true;
+    }
+
+    void SetMaxState()
+    {
+        if (labelText != null)
+            labelText.text = maxText;
+
+        if (boostBtn != null)
+            boostBtn.interactable = false;
+
+        if (_btnImage != null)
+            _btnImage.color = disabledColor;
+    }
+
+    public void Refresh()
+    {
+        if (HeartManager.Instance == null)
+        {
+            
+            return;
+        }
+
+        int level = HeartManager.Instance.GetAddableHeartLevel();
+
+        int index = level - 1;
+        if (index < 0 || index >= HeartManager.Instance.heartPrefabsByLevel.Count)
+        {
+            
+            return; 
+        }
+
+        GameObject prefab = HeartManager.Instance.heartPrefabsByLevel[index];
+        if (prefab == null)
+        {
+            
+            return;
+        }
+
+        HeartStats stats = prefab.GetComponent<HeartStats>();
+        if (stats == null || stats.icon == null)
+        {
+            
+            return;
+        }
+
+        iconImage.sprite = stats.icon;
+        iconImage.enabled = true;
+    }
+
 
     public void AddHeartBTN()
     {

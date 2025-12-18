@@ -41,6 +41,10 @@ public class HeartStats : MonoBehaviour
     [Header("Giá trị tiền của Heart ($)")]
     public long moneyValue = 10;
 
+    [Header("UI")]
+    public Sprite icon;
+    public int level = 1;
+
     [Header("VFX khi va chạm Gate")]
     public GameObject gateHitVFX;
 

@@ -8,6 +8,9 @@ public class HeartChainManager : MonoBehaviour
     [Header("Heart list (0 = leader)")]
     public List<Transform> hearts = new List<Transform>();
 
+    [Header("Road State")]
+    public int CurrentRoadIndex { get; private set; } = 0;
+
     [Header("Leader movement")]
     public bool useSplinePath = true;
     public SplinePath splinePath;
@@ -88,6 +91,9 @@ public class HeartChainManager : MonoBehaviour
             // snap chain ngay từ đầu để không "rụng" vị trí
             ApplyChainPoseImmediate();
         }
+
+        
+
     }
 
     void Update()
@@ -153,12 +159,14 @@ public class HeartChainManager : MonoBehaviour
         ApplyPoseToTransform(hearts[0], lpos, lfwd, immediate: true);
 
         // followers
+        float dir = reverseDirection ? -1f : 1f; // cùng dir với lúc leader chạy
         for (int i = 1; i < hearts.Count; i++)
         {
             Transform t = hearts[i];
             if (t == null) continue;
 
-            float d = leaderDistance - (i * heartSpacingMeters);
+            // quan trọng: đi lùi "phía sau" theo hướng di chuyển
+            float d = leaderDistance - dir * (i * heartSpacingMeters);
             d = WrapDistanceBySource(d);
 
             SampleAt(d, out var pos, out var fwd);
@@ -179,12 +187,14 @@ public class HeartChainManager : MonoBehaviour
         ApplyPoseToTransform(hearts[0], lpos, lfwd, aPos, aRot);
 
         // followers
+        float dir = reverseDirection ? -1f : 1f; // cùng dir với lúc leader chạy
         for (int i = 1; i < hearts.Count; i++)
         {
             Transform t = hearts[i];
             if (t == null) continue;
 
-            float d = leaderDistance - (i * heartSpacingMeters);
+            // quan trọng: đi lùi "phía sau" theo hướng di chuyển
+            float d = leaderDistance - dir * (i * heartSpacingMeters);
             d = WrapDistanceBySource(d);
 
             SampleAt(d, out var pos, out var fwd);
@@ -501,4 +511,5 @@ public class HeartChainManager : MonoBehaviour
             ApplyFallbackFollowSmooth(Time.deltaTime);
         }
     }
+
 }

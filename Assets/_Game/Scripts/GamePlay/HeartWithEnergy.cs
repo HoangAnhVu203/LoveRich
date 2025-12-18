@@ -37,6 +37,16 @@ public class HeartWithEnergy : MonoBehaviour
     public ParticleSystem boostVFX;
     public bool clearOnStop = true;
 
+    [Header("Drain Upgrade")]
+    public int maxUpgradeCount = 10;
+    public float reducePerUpgrade = 2.5f;
+    public float minDrainPerSecond = 5f;
+
+    const string PP_DRAIN_UPGRADE = "ENERGY_DRAIN_UPGRADE_COUNT";
+
+    int _upgradeCount;
+    float _baseDrainPerSecond;
+
     float _currentEnergy;
     float _currentSpeed;
     float _targetSpeed;
@@ -55,6 +65,15 @@ public class HeartWithEnergy : MonoBehaviour
 
     void Start()
     {
+        _baseDrainPerSecond = drainPerSecond;
+
+        _upgradeCount = PlayerPrefs.GetInt(PP_DRAIN_UPGRADE, 0);
+
+        drainPerSecond = Mathf.Max(
+            minDrainPerSecond,
+            _baseDrainPerSecond - _upgradeCount * reducePerUpgrade
+        );
+
         _currentEnergy = maxEnergy;
         _currentSpeed = normalSpeed;
         _targetSpeed = normalSpeed;
@@ -63,6 +82,7 @@ public class HeartWithEnergy : MonoBehaviour
         if (_energyImage != null) _energyImage.fillAmount = 1f;
         if (_canvasGroup != null) _canvasGroup.alpha = 1f;
     }
+
 
     public void BindUI(RectTransform sharedBar, Transform sharedRoot, Transform sharedCenter)
     {
@@ -212,4 +232,36 @@ public class HeartWithEnergy : MonoBehaviour
         if (energyBar != null && (Transform)energyBar != target)
             energyBar.position = screenPos;
     }
+
+    public bool TryUpgradeDrain()
+    {
+        if (_upgradeCount >= maxUpgradeCount)
+            return false;
+
+        _upgradeCount++;
+
+        drainPerSecond = Mathf.Max(
+            minDrainPerSecond,
+            _baseDrainPerSecond - _upgradeCount * reducePerUpgrade
+        );
+
+        PlayerPrefs.SetInt(PP_DRAIN_UPGRADE, _upgradeCount);
+        PlayerPrefs.Save();
+
+        Debug.Log($"[EnergyUpgrade] Lv {_upgradeCount}/{maxUpgradeCount} - Drain={drainPerSecond}");
+        return true;
+    }
+
+    public bool IsDrainUpgradeMaxed()
+    {
+        return _upgradeCount >= maxUpgradeCount;
+    }
+
+    public int GetUpgradeCount()
+    {
+        return _upgradeCount;
+    }
+
+
+
 }

@@ -129,6 +129,8 @@ MonoBehaviour:
   type: 5
   weight: 6
   moneyValue: 4000
+  icon: {fileID: 21300000, guid: cc8af9ba0826e4b38a405a7e9974f91f, type: 3}
+  level: 6
   gateHitVFX: {fileID: 7026576875600070140, guid: 6a6464d452c5740dea237f440006a9da, type: 3}
   mergeResultPrefab: {fileID: 6435257644260775010, guid: eb57efb0029c948e7a709ba1f2d35a53, type: 3}
 --- !u!1001 &362863202435377834

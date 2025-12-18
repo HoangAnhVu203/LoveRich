@@ -16,7 +16,10 @@ public class HeartManager : MonoBehaviour
     public GameObject heartLightBluePrefab;
     public int needCountToMerge = 3;
 
-    [Tooltip("Tên Layer dùng cho HeartPink (để nhận diện)")]
+    [Header("Heart Prefabs By Level")]
+    public List<GameObject> heartPrefabsByLevel;
+
+    [Tooltip("Tên Layer dùng cho HeartPink ")]
     public string pinkLayerName = "HeartPink";
 
     void Awake()
@@ -28,43 +31,61 @@ public class HeartManager : MonoBehaviour
     {
     }
 
+    void Start()
+    {
+        if (HeartUnlocks.Instance != null)
+        {
+            var chain = FindObjectOfType<HeartChainManager>();
+            if (chain != null && chain.hearts != null)
+            {
+                foreach (var t in chain.hearts)
+                {
+                    if (t == null) continue;
+                    var s = t.GetComponent<HeartStats>();
+                    if (s != null) HeartUnlocks.Instance.MarkUnlocked(s.type);
+                }
+            }
+        }
+    }
+
     public void AddHeart()
     {
-        if (HeartChainManagerInstance == null) return;
-
         var manager = HeartChainManagerInstance;
-
-        if (manager.hearts.Count == 0)
-        {
-            Debug.LogWarning("[HeartManager] ChainManager chưa có leader.");
-            return;
-        }
+        if (manager == null || manager.hearts.Count == 0) return;
 
         Transform last = manager.hearts[manager.hearts.Count - 1];
         if (last == null) return;
 
-        // Spawn vào ROOT
+        int spawnLevel = GetAddableHeartLevel();
+
+        int index = spawnLevel - 1;
+        if (index < 0 || index >= heartPrefabsByLevel.Count)
+        {
+            Debug.LogError($"[AddHeart] Không có prefab cho level {spawnLevel}");
+            return;
+        }
+
+        GameObject prefab = heartPrefabsByLevel[index];
+
         GameObject newHeart = Instantiate(
-            heartPrefab,
+            prefab,
             last.position,
             last.rotation,
             spawnParent
         );
 
-        // COPY SCALE CHUẨN TỪ HEART CŨ
         newHeart.transform.localScale = last.localScale;
 
-        // follower không cần Energy
         var energy = newHeart.GetComponent<HeartWithEnergy>();
-        if (energy != null)
-            energy.enabled = false;
+        if (energy != null) energy.enabled = false;
 
         manager.RegisterHeart(newHeart.transform);
-
-        // recalc leader và đảm bảo energy đúng
         manager.RecalculateLeaderByWeight();
         manager.EnsureEnergyOnLeaderOnly();
+
+        Debug.Log($"[AddHeart] Spawn heart level {spawnLevel}");
     }
+
 
     int FindFirstMergeTripleIndex(out HeartType foundType)
     {
@@ -144,6 +165,9 @@ public class HeartManager : MonoBehaviour
             return;
         }
 
+        long oldMoney = stats.moneyValue;
+
+
         // 2. Vị trí spawn = trung bình 3 tim
         Vector3 spawnPos = (h0.position + h1.position + h2.position) / 3f;
         Quaternion spawnRot = h1.rotation;
@@ -168,6 +192,14 @@ public class HeartManager : MonoBehaviour
 
         newHeart.transform.localScale = h1.localScale;
 
+        var newStats = newHeart.GetComponent<HeartStats>();
+
+        HeartUnlocks.Instance.TryUpdateMaxLevel(newStats.level);
+
+        var panel = FindObjectOfType<PanelGamePlay>(true);
+        if (panel != null)
+            panel.Refresh();
+
         // 5. KHÔNG tự quyết Energy ở đây (để chain quyết sau khi recalc)
         var energy = newHeart.GetComponent<HeartWithEnergy>();
         if (energy != null) energy.enabled = false;
@@ -185,6 +217,22 @@ public class HeartManager : MonoBehaviour
         //chain.RebuildHistoryByChainSegments();
         //chain.SnapAllHeartsToHistory();
         chain.SnapChainImmediate();
+
+        if (newStats != null && HeartUnlocks.Instance != null)
+        {
+            if (!HeartUnlocks.Instance.IsUnlocked(newStats.type))
+            {
+                HeartUnlocks.Instance.MarkUnlocked(newStats.type);
+
+                var popup = FindObjectOfType<PanelNewHeart>(true); 
+                if (popup != null)
+                {
+                    Sprite icon = newStats.icon != null ? newStats.icon : null;
+                    popup.Show(icon, newStats.level, oldMoney, newStats.moneyValue);
+                }
+            }
+        }
+
     }
 
     // ======== Helper lấy leader / last từ ChainManager ========
@@ -206,4 +254,42 @@ public class HeartManager : MonoBehaviour
 
         return chain.hearts[0];
     }
+
+    public int GetAddableHeartLevel()
+    {
+        if (HeartUnlocks.Instance == null)
+            return 1;
+
+        int maxUnlocked = HeartUnlocks.Instance.GetMaxUnlockedLevel();
+        int maxAddable = maxUnlocked - 3;
+
+        if (maxAddable < 1)
+            maxAddable = 1;
+
+        var chain = HeartChainManagerInstance;
+        if (chain == null || chain.hearts == null || chain.hearts.Count == 0)
+            return maxAddable;
+
+        int lowestLevelInChain = int.MaxValue;
+
+        foreach (var t in chain.hearts)
+        {
+            if (t == null) continue;
+
+            var stats = t.GetComponent<HeartStats>();
+            if (stats == null) continue;
+
+            if (stats.level < lowestLevelInChain)
+                lowestLevelInChain = stats.level;
+        }
+
+        // Nếu còn heart thấp hơn level addable max → add heart đó
+        if (lowestLevelInChain < maxAddable)
+            return lowestLevelInChain;
+
+        // Nếu tất cả >= maxAddable → add maxAddable
+        return maxAddable;
+    }
+
+
 }
