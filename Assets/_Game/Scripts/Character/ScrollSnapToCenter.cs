@@ -24,6 +24,9 @@ public class ScrollSnapToCenter : MonoBehaviour, IBeginDragHandler, IEndDragHand
     [SerializeField] private bool updateWhileDragging = true; // kéo là đổi info luôn
     [SerializeField] private bool highlightFocused = true;
 
+    public System.Action<CharacterData> OnCenteredChanged;
+
+
     private bool isDragging;
     private Coroutine snapCR;
     private int currentIndex = -1;
@@ -189,6 +192,11 @@ public class ScrollSnapToCenter : MonoBehaviour, IBeginDragHandler, IEndDragHand
         // Update info panel
         if (infoPanel != null && itemUIs != null && idx >= 0 && idx < itemUIs.Count)
             infoPanel.Show(itemUIs[idx].Data);
+
+        if (itemUIs != null && idx >= 0 && idx < itemUIs.Count)
+        {
+            OnCenteredChanged?.Invoke(itemUIs[idx].Data);
+        }
 
         // Highlight
         if (highlightFocused && itemUIs != null)

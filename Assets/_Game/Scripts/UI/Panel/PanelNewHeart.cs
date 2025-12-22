@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelNewHeart : MonoBehaviour
+public class PanelNewHeart : UICanvas
 {
     public Image heartIcon;
     public Text levelText;
@@ -17,7 +17,7 @@ public class PanelNewHeart : MonoBehaviour
 
     public void Show(Sprite icon, int level, long oldMoney, long newMoney)
     {
-        if (blocker != null) blocker.SetActive(true);
+        
 
         if (heartIcon != null) heartIcon.sprite = icon;
         if (levelText != null) levelText.text = $"Level {level}";
@@ -30,5 +30,10 @@ public class PanelNewHeart : MonoBehaviour
     {
         gameObject.SetActive(false);
         if (blocker != null) blocker.SetActive(false);
+    }
+
+    public void OnDimClick()
+    {
+        gameObject.SetActive(false);
     }
 }
