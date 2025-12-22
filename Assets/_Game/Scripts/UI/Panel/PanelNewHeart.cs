@@ -17,7 +17,6 @@ public class PanelNewHeart : UICanvas
 
     public void Show(Sprite icon, int level, long oldMoney, long newMoney)
     {
-        
 
         if (heartIcon != null) heartIcon.sprite = icon;
         if (levelText != null) levelText.text = $"Level {level}";
@@ -28,7 +27,7 @@ public class PanelNewHeart : UICanvas
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        UIManager.Instance.CloseUIDirectly<PanelNewHeart>();
         if (blocker != null) blocker.SetActive(false);
     }
 

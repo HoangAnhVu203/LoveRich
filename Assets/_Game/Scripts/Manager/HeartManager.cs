@@ -224,12 +224,10 @@ public class HeartManager : MonoBehaviour
             {
                 HeartUnlocks.Instance.MarkUnlocked(newStats.type);
 
-                var popup = FindObjectOfType<PanelNewHeart>(true); 
-                if (popup != null)
-                {
-                    Sprite icon = newStats.icon != null ? newStats.icon : null;
-                    popup.Show(icon, newStats.level, oldMoney, newStats.moneyValue);
-                }
+                var panels = UIManager.Instance.OpenUI<PanelNewHeart>();
+
+                Sprite icon = newStats.icon;
+                panels.Show(icon, newStats.level, oldMoney, newStats.moneyValue);
             }
         }
 
