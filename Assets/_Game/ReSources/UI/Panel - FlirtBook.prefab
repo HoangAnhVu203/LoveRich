@@ -1516,6 +1516,7 @@ MonoBehaviour:
   lockedAlpha: 0.4
   unlockedAlpha: 1
   photoUnlockLevel: 4
+  revenueBonusText: {fileID: 537794232777486725}
 --- !u!1 &9103293655676196087
 GameObject:
   m_ObjectHideFlags: 0

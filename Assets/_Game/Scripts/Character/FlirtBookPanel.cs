@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,8 @@ public class FlirtBookPanel : UICanvas
     [SerializeField, Range(0f, 1f)] float lockedAlpha = 0.4f;
     [SerializeField, Range(0f, 1f)] float unlockedAlpha = 1f;
     [SerializeField] int photoUnlockLevel = 4;
+    [SerializeField] Text revenueBonusText;
+
 
     CharacterData currentCharacter;
 
@@ -122,6 +125,8 @@ public class FlirtBookPanel : UICanvas
         RefreshPhotoButtonState(lv);
 
         RefreshLevelUpButtonState(lv);
+
+        RefreshRevenueBonusUI(lv);
     }
 
     void RefreshPhotoButtonState(int lv)
@@ -144,6 +149,17 @@ public class FlirtBookPanel : UICanvas
         bool canUp = lv < CharacterProgressStore.MAX_LEVEL;
     }
 
+    void RefreshRevenueBonusUI(int lv)
+    {
+        if (revenueBonusText == null) return;
+
+        // Lv1=0%, Lv2=10%, Lv3=20%...
+        float bonusPercent = (Mathf.Max(1, lv) - 1) * 10f;
+
+        // Ví dụ text: "+20% revenue per pass"
+        revenueBonusText.text = $"REVENUE +{bonusPercent:0}%";
+    }
+
 
     public void OnLevelUpClicked()
     {
@@ -161,6 +177,9 @@ public class FlirtBookPanel : UICanvas
         RefreshPhotoButtonState(newLv);
 
         RefreshLevelUpButtonState(newLv);
+
+        RefreshRevenueBonusUI(newLv);
+
 
         Debug.Log($"[LevelUp] {currentCharacter.characterId} -> LEVEL {newLv}");
     }

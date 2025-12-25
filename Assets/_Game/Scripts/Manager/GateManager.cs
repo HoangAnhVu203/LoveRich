@@ -39,7 +39,7 @@ public class GateManager : Singleton<GateManager>
     [Header("Optional limits")]
     public int maxGates = 0;
 
-    [Header("Avatar (optional)")]
+    [Header("Avatar / Character Mapping")]
     public GateAvatarMarker avatarPrefab;
     public GirlAvatarOrder girlOrder;
     public Vector3 avatarLocalOffset = new Vector3(0f, 1.2f, 0f);
@@ -57,7 +57,6 @@ public class GateManager : Singleton<GateManager>
     }
 
     // ================= ROAD CHANGED =================
-    // Gate đi theo road => đổi spline là reposition toàn bộ gate lên spline mới
     public void OnRoadChanged(SplinePath newSpline)
     {
         _currentSpline = newSpline;
@@ -128,22 +127,27 @@ public class GateManager : Singleton<GateManager>
 
         // 4) spawn
         var go = Instantiate(gatePrefab, gateRoot);
-        go.name = $"{gatePrefab.name}_Gate_{_gates.Count + 1}"; // gate #1, #2...
+        go.name = $"{gatePrefab.name}_Gate_{_gates.Count + 1}";
 
         var entry = new GateEntry { go = go, ratio = ratio };
         _gates.Add(entry);
 
         ApplyGateByRatio(entry);
-        AttachAvatarMarker(entry);
+
+        // ===== FIX: luôn assign girlIndex (không phụ thuộc avatarPrefab) =====
+        AssignGirlIndex(entry);
+
+        // Spawn marker (nếu có prefab) theo girlIndex đã assign
+        AttachOrRefreshAvatarMarker(entry);
+
+        // ===== FIX CORE: bind characterId thật cho Gate =====
+        BindGateCharacterFromGirlIndex(entry);
 
         RoadManager.Instance?.NotifyGateSpawnedOnCurrentRoad();
 
-        // 5) mark purchased => cost tăng
         GateCostStore.MarkGatePurchased();
 
-        // 6) refresh phụ thuộc gate
         GameManager.Instance?.RefreshLapPreview();
-
         GameSaveManager.Instance?.RequestSave();
 
         return true;
@@ -165,53 +169,119 @@ public class GateManager : Singleton<GateManager>
         if (chain != null) _currentSpline = chain.splinePath;
     }
 
-    void AttachAvatarMarker(GateEntry entry)
+    // ===== FIX: tách chọn girlIndex ra khỏi avatarPrefab =====
+    void AssignGirlIndex(GateEntry entry)
     {
-        if (entry == null || entry.go == null) return;
-        if (avatarPrefab == null) return;
-        if (girlOrder == null || girlOrder.avatars == null || girlOrder.avatars.Count == 0) return;
+        if (entry == null) return;
 
-        int count = girlOrder.avatars.Count;
-        int idx = nextGirlIndex;
-
-        if (idx >= count)
+        int total = GetGirlCount();
+        if (total <= 0)
         {
-            if (!loopGirls) return;
-            idx = idx % count;
+            entry.girlIndex = -1;
+            return;
         }
 
-        var marker = Instantiate(avatarPrefab, entry.go.transform);
-        marker.transform.localPosition = avatarLocalOffset;
-        marker.transform.localRotation = Quaternion.identity;
-        marker.transform.localScale = Vector3.one;
+        int idx = nextGirlIndex;
 
-        marker.SetAvatar(girlOrder.avatars[idx]);
+        if (idx >= total)
+        {
+            if (!loopGirls)
+            {
+                // Nếu không loop, kẹp về cuối để không bị -1
+                idx = total - 1;
+            }
+            else
+            {
+                idx = idx % total;
+            }
+        }
 
-        entry.marker = marker;
         entry.girlIndex = idx;
 
+        // Unlock theo index (giữ nguyên logic của bạn)
         FlirtBookUnlockStore.TryUnlock(idx);
 
         nextGirlIndex++;
     }
 
-    void RestoreAvatarMarker(GateEntry entry, int girlIndex)
+    int GetGirlCount()
+    {
+        if (girlOrder == null) return 0;
+
+        // ưu tiên list characterIds (vì đó là mapping thật)
+        if (girlOrder.characterIds != null && girlOrder.characterIds.Count > 0)
+            return girlOrder.characterIds.Count;
+
+        // fallback: nếu chỉ có avatars
+        if (girlOrder.avatars != null && girlOrder.avatars.Count > 0)
+            return girlOrder.avatars.Count;
+
+        return 0;
+    }
+
+    void AttachOrRefreshAvatarMarker(GateEntry entry)
     {
         if (entry == null || entry.go == null) return;
         if (avatarPrefab == null) return;
         if (girlOrder == null || girlOrder.avatars == null || girlOrder.avatars.Count == 0) return;
-        if (girlIndex < 0 || girlIndex >= girlOrder.avatars.Count) return;
+        if (entry.girlIndex < 0 || entry.girlIndex >= girlOrder.avatars.Count) return;
+
+        // nếu đã có marker thì bỏ cũ
+        if (entry.marker != null) Destroy(entry.marker.gameObject);
 
         var marker = Instantiate(avatarPrefab, entry.go.transform);
         marker.transform.localPosition = avatarLocalOffset;
         marker.transform.localRotation = Quaternion.identity;
         marker.transform.localScale = Vector3.one;
 
-        marker.SetAvatar(girlOrder.avatars[girlIndex]);
+        marker.SetAvatar(girlOrder.avatars[entry.girlIndex]);
 
         entry.marker = marker;
-        entry.girlIndex = girlIndex;
-        FlirtBookUnlockStore.TryUnlock(girlIndex);
+    }
+
+    // ====== FIX CORE: map girlIndex -> Gate.SetCharacter() ======
+    void BindGateCharacterFromGirlIndex(GateEntry entry)
+    {
+        if (entry == null || entry.go == null) return;
+
+        var gate = entry.go.GetComponent<Gate>();
+        if (gate == null) return;
+
+        GetCharacterInfo(entry.girlIndex, out string charId, out int defaultLv);
+        gate.SetCharacter(charId, defaultLv);
+
+        // Debug (bật nếu cần)
+        // Debug.Log($"[GateManager] Bind {entry.go.name}: girlIndex={entry.girlIndex} => charId='{charId}' defaultLv={defaultLv}");
+    }
+
+    // ====== FIX: lấy characterId thật từ girlOrder.characterIds ======
+    void GetCharacterInfo(int girlIndex, out string characterId, out int defaultLv)
+    {
+        characterId = "";
+        defaultLv = 1;
+
+        if (girlOrder == null) return;
+
+        // 1) characterId thật
+        if (girlOrder.characterIds != null &&
+            girlIndex >= 0 && girlIndex < girlOrder.characterIds.Count)
+        {
+            characterId = girlOrder.characterIds[girlIndex];
+        }
+
+        // 2) default level (optional)
+        if (girlOrder.defaultLevels != null &&
+            girlIndex >= 0 && girlIndex < girlOrder.defaultLevels.Count)
+        {
+            defaultLv = Mathf.Max(1, girlOrder.defaultLevels[girlIndex]);
+        }
+
+        // 3) không cho rỗng để tránh store fail
+        if (string.IsNullOrEmpty(characterId))
+        {
+            // fallback cuối cùng (chỉ để tránh null), nhưng bạn nên điền characterIds trong Inspector
+            characterId = $"girl_{girlIndex}";
+        }
     }
 
     // ================= PICK RATIO =================
@@ -344,7 +414,6 @@ public class GateManager : Singleton<GateManager>
     // ================= PUBLIC API =================
     public int GatesCount => _gates.Count;
 
-    // Save: lưu toàn bộ gates (gate đi theo road nên không cần roadIndex)
     public List<GateSave> ExportAllGates()
     {
         var result = new List<GateSave>();
@@ -355,7 +424,7 @@ public class GateManager : Singleton<GateManager>
 
             result.Add(new GateSave
             {
-                roadIndex = 0, // giữ field cho tương thích struct cũ (nếu bạn chưa muốn sửa GateSave)
+                roadIndex = 0,
                 ratio = e.ratio,
                 girlIndex = e.girlIndex
             });
@@ -371,6 +440,8 @@ public class GateManager : Singleton<GateManager>
 
         ResolveSpline();
         if (_currentSpline == null || _currentSpline.TotalLength <= 0f) return;
+
+        int maxNext = 0;
 
         for (int i = 0; i < saves.Count; i++)
         {
@@ -389,11 +460,21 @@ public class GateManager : Singleton<GateManager>
 
             _gates.Add(entry);
             ApplyGateByRatio(entry);
-            RestoreAvatarMarker(entry, s.girlIndex);
-            FlirtBookUnlockStore.TryUnlock(s.girlIndex);
+
+            // luôn unlock lại theo index đã save
+            FlirtBookUnlockStore.TryUnlock(entry.girlIndex);
+
+            // marker theo index đã save
+            AttachOrRefreshAvatarMarker(entry);
+
+            // bind character theo index đã save
+            BindGateCharacterFromGirlIndex(entry);
+
+            maxNext = Mathf.Max(maxNext, entry.girlIndex + 1);
         }
 
-        nextGirlIndex = Mathf.Max(nextGirlIndex, _gates.Count);
+        // nextGirlIndex để spawn gate tiếp theo không bị trùng
+        nextGirlIndex = Mathf.Max(nextGirlIndex, maxNext);
 
         GameManager.Instance?.RefreshLapPreview();
     }

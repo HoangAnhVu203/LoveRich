@@ -1,9 +1,23 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Gate : MonoBehaviour
 {
     [SerializeField] HeartChainManager chain;
     [SerializeField] RiderAnimator rider;
+
+    [Header("Reward")]
+    [SerializeField] string characterId;
+    [SerializeField] int defaultLv = 1;
+
+    [SerializeField] float cooldownPerHeart = 0.2f;
+    readonly Dictionary<int, float> _lastHitTime = new();
+
+    public void SetCharacter(string id, int defaultLevel = 1)
+    {
+        characterId = id;
+        defaultLv = Mathf.Max(1, defaultLevel);
+    }
 
     void Awake()
     {
@@ -16,16 +30,33 @@ public class Gate : MonoBehaviour
         var stats = other.GetComponentInParent<HeartStats>();
         if (stats == null) return;
 
-        PlayerMoney.Instance?.AddMoney(stats.moneyValue);
+        if (!other.CompareTag("Heart")) return;
 
+        int key = other.GetInstanceID();
+        float now = Time.time;
+        if (_lastHitTime.TryGetValue(key, out float t) && now - t < cooldownPerHeart)
+            return;
+        _lastHitTime[key] = now;
+
+        // VFX
         if (stats.gateHitVFX != null)
-        {
             Instantiate(stats.gateHitVFX, other.transform.position, stats.gateHitVFX.transform.rotation);
-        }
 
+        // Rider anim when leader hits
         if (chain != null && chain.GetLeader() != null && other.transform == chain.GetLeader())
-        {
             rider?.PlayGateHit();
-        }
+
+        // ===== Reward =====
+        long baseReward = stats.moneyValue;
+
+        int lv = CharacterProgressStore.GetLevel(characterId, defaultLv);
+        float mul = CharacterRevenueBonus.GetMultiplierByLevel(lv);
+
+        long finalReward = Mathf.RoundToInt(baseReward * mul);
+        PlayerMoney.Instance?.AddMoney(finalReward);
+
+        Debug.Log($"[GateReward] charId='{characterId}' lv={lv} base={baseReward} mul={mul} final={finalReward}");
+
+        GameManager.Instance?.RefreshLapPreview();
     }
 }

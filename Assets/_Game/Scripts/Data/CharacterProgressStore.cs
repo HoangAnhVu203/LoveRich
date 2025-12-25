@@ -34,4 +34,14 @@ public static class CharacterProgressStore
         SetLevel(characterId, lv);
         return lv;
     }
+
+    public static class CharacterLevelUtil
+    {
+        public static int GetCurrentLevel(string characterId, int defaultLv = 1)
+        {
+            if (string.IsNullOrEmpty(characterId)) return 1;
+            return CharacterProgressStore.GetLevel(characterId, Mathf.Max(1, defaultLv));
+        }
+    }
+
 }
