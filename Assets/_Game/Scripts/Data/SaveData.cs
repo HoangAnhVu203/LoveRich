@@ -23,10 +23,10 @@ public class SaveData
     public bool reverseDirection;
 
     // Hearts in chain (store by level)
-    public List<int> heartLevels = new();
+    public List<int> heartLevels = new() ;
 
     // Gates snapshot
-    public List<GateSave> gates = new();
+    public List<GateSave> gates = new List<GateSave>(); 
 
     // Gate cost store
     public int gatePurchasedCount;

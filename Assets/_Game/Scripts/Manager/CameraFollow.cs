@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
 public class CameraFollow : MonoBehaviour
 {
+    public static CameraFollow Instance { get; private set; }
+
     [Header("Follow Settings")]
     [SerializeField] Vector3 offset = new Vector3(0, 5f, -10f);
     [SerializeField] float moveSpeed = 5f;
@@ -13,24 +13,34 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] HeartChainManager chainManager;
 
+    // Giữ offset thiết kế (Inspector) để dùng khi load lại
+    Vector3 _designOffset;
+
     void Awake()
     {
-        if (chainManager == null)
+        if (Instance != null && Instance != this)
         {
-            chainManager = FindObjectOfType<HeartChainManager>();
+            Destroy(gameObject);
+            return;
         }
+        Instance = this;
+
+        if (chainManager == null)
+            chainManager = FindObjectOfType<HeartChainManager>();
+
+        // Lưu offset thiết kế ngay từ đầu
+        _designOffset = offset;
     }
 
     void Start()
     {
+        // Start chỉ nên “bind target”, KHÔNG recompute offset theo vị trí camera runtime (dễ lệch khi load)
         if (target == null)
-        {
             UpdateTargetToLeader();
-        }
+
+        // Nếu đây là lần chơi mới (không load), snap 1 lần theo offset thiết kế để chắc chắn thấy leader
         if (target != null)
-        {
-            offset = transform.position - target.position;
-        }
+            SnapToTargetUsingDesignOffset();
     }
 
     void LateUpdate()
@@ -40,20 +50,17 @@ public class CameraFollow : MonoBehaviour
         if (target == null) return;
 
         Vector3 desiredPos = target.position + offset;
-        transform.position = Vector3.Lerp(
-            transform.position,
-            desiredPos,
-            moveSpeed * Time.deltaTime
-        );
+        transform.position = Vector3.Lerp(transform.position, desiredPos, moveSpeed * Time.deltaTime);
     }
 
+    // ================= API =================
+
+    /// <summary>
+    /// Set target nhưng KHÔNG tự ý đổi offset (tránh offset bị chốt sai sau load).
+    /// </summary>
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
-        if (target != null)
-        {
-            offset = transform.position - target.position;
-        }
     }
 
     public void UpdateTargetToLeader()
@@ -62,9 +69,7 @@ public class CameraFollow : MonoBehaviour
 
         Transform leader = chainManager.GetLeader();
         if (leader != null)
-        {
             target = leader;
-        }
     }
 
     void AutoUpdateTargetFromLeader()
@@ -77,25 +82,37 @@ public class CameraFollow : MonoBehaviour
 
         Transform leader = chainManager.GetLeader();
         if (leader == null) return;
-        if (target != leader)
-        {
-            target = leader;
 
-            offset = transform.position - target.position;
-        }
+        // Nếu target null/đã destroy/khác leader => rebind
+        if (target == null || !target || target != leader)
+            target = leader;
     }
 
+    /// <summary>
+    /// Gọi sau khi Load + chain đã Snap xong.
+    /// Dùng offset thiết kế để đảm bảo leader nằm trong màn hình.
+    /// </summary>
     public void RebindToLeaderSnap()
     {
         if (chainManager == null) chainManager = FindObjectOfType<HeartChainManager>();
         if (chainManager == null) return;
 
-        var leader = chainManager.GetLeader();
+        Transform leader = chainManager.GetLeader();
         if (leader == null) return;
 
         target = leader;
-        // Snap ngay để “focus”
+
+        // QUAN TRỌNG: dùng offset thiết kế, không recompute theo camera hiện tại
+        offset = _designOffset;
+
+        // Snap ngay
+        transform.position = leader.position + offset;
+    }
+
+    void SnapToTargetUsingDesignOffset()
+    {
+        if (target == null) return;
+        offset = _designOffset;
         transform.position = target.position + offset;
-        transform.LookAt(target.position);
     }
 }

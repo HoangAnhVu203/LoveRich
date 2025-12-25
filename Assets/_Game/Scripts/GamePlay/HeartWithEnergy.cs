@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 [DisallowMultipleComponent]
 public class HeartWithEnergy : MonoBehaviour
@@ -56,6 +58,9 @@ public class HeartWithEnergy : MonoBehaviour
     Image _energyImage;
     CanvasGroup _canvasGroup;
     Camera _mainCam;
+
+    static readonly List<RaycastResult> _uiHits = new();
+    PointerEventData _ped;
 
     void Awake()
     {
@@ -147,6 +152,30 @@ public class HeartWithEnergy : MonoBehaviour
         HandleFade(isPressing);
     }
 
+        bool IsPointerBlockingByUI()
+        {
+            if (EventSystem.current == null) return false;
+
+            // Mobile: ưu tiên touch position để chính xác
+            Vector2 pos;
+    #if UNITY_EDITOR || UNITY_STANDALONE
+            pos = Input.mousePosition;
+    #else
+            if (Input.touchCount == 0) return false;
+            pos = Input.GetTouch(0).position;
+    #endif
+
+            if (_ped == null) _ped = new PointerEventData(EventSystem.current);
+            _ped.Reset();
+            _ped.position = pos;
+
+            _uiHits.Clear();
+            EventSystem.current.RaycastAll(_ped, _uiHits);
+
+            return _uiHits.Count > 0;
+        }
+
+
     void OnDisable()
     {
         if (IsBoostingGlobal) IsBoostingGlobal = false;
@@ -154,6 +183,8 @@ public class HeartWithEnergy : MonoBehaviour
 
     bool IsPressing()
     {
+        if (IsPointerBlockingByUI())
+            return false;
 #if UNITY_EDITOR || UNITY_STANDALONE
         return Input.GetMouseButton(0);
 #else

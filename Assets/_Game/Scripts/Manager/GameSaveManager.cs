@@ -92,6 +92,8 @@ public class GameSaveManager : MonoBehaviour
             return;
         }
 
+        Debug.Log($"[Load] gates count = {(data.gates != null ? data.gates.Count : -1)}");
+
         ApplySaveData(data);
         Debug.Log("[Load] OK");
     }
@@ -141,8 +143,10 @@ public class GameSaveManager : MonoBehaviour
         // Gates snapshot
         if (GateManager.Instance != null && RoadManager.Instance != null)
         {
-            data.gates = GateManager.Instance.ExportAllGatesWithRoadIndex(RoadManager.Instance.CurrentRoadIndex);
+            data.gates = GateManager.Instance.ExportAllGates();
         }
+
+        Debug.Log($"[Save] gates count = {(data.gates != null ? data.gates.Count : -1)}");
 
         // GateCostStore
         data.gatePurchasedCount = GateCostStore.GetPurchasedGateCount();
@@ -210,6 +214,11 @@ public class GameSaveManager : MonoBehaviour
         if (panel != null) panel.Refresh();
 
         OnGameLoaded?.Invoke();
+
+        StartCoroutine(RebindCameraAfterLoadCR());
+
+        Debug.Log($"[Load] apply GateCostStore purchasedCount={data.gatePurchasedCount} lastCost={data.gateLastCost}");
+
     }
 
     public void ClearSave()
@@ -257,4 +266,13 @@ public class GameSaveManager : MonoBehaviour
         }
         SaveGame();
     }
+
+    IEnumerator RebindCameraAfterLoadCR()
+    {
+        yield return null;
+        yield return null; 
+        if (CameraFollow.Instance != null)
+            CameraFollow.Instance.RebindToLeaderSnap();
+    }
+
 }

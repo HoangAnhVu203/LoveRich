@@ -11,7 +11,7 @@ public class PanelGamePlay : UICanvas
     [Header("Cost UI")]
     [SerializeField] TMP_Text addCostText;
     [SerializeField] TMP_Text mergeCostText;
-    [SerializeField] string costPrefix = "$ ";
+    string costPrefix = "$ ";
 
     [Header("Heart Cap UI")]
     [SerializeField] TMP_Text heartCapText;
@@ -52,7 +52,12 @@ public class PanelGamePlay : UICanvas
     [SerializeField] TMP_Text upgradeRoadCostText;
     [SerializeField] Button upgradeRoadBtn;
     [SerializeField] TMP_Text gateProgressText;   
-    [SerializeField] string gateProgressFormat = "{0}/{1}";
+    string gateProgressFormat = "{0}/{1}";
+
+    [Header("Flirt Book UI")]
+    [SerializeField] GameObject flirtBookButtonGO;
+    [SerializeField] GameObject banner;
+
 
     Image _btnImage;
 
@@ -105,6 +110,7 @@ public class PanelGamePlay : UICanvas
 
         RefreshGateCostUI();
         RefreshUpgradeRoadUI();
+        RefreshFlirtBookUI();  
     }
 
     // ================= MAIN REFRESH =================
@@ -113,6 +119,7 @@ public class PanelGamePlay : UICanvas
     {
         RefreshGateCostUI();
         RefreshUpgradeRoadUI();
+        RefreshFlirtBookUI();  
         RefreshAddHeartIcon();
         RefreshHeartCapUI();
         RefreshCostUI();
@@ -122,45 +129,40 @@ public class PanelGamePlay : UICanvas
 
     // ================= ROAD UPGRADE UI =================
 
-    void RefreshUpgradeRoadUI()
+    public void RefreshUpgradeRoadUI()
     {
-        if (upgradeRoadBtn == null && upgradeRoadCostText == null) return;
-
-        if (upgradeRoadBtn != null) upgradeRoadBtn.interactable = false;
-
         if (RoadManager.Instance == null)
         {
-            if (upgradeRoadCostText != null) upgradeRoadCostText.gameObject.SetActive(false);
-            return;
-        }
-
-        int totalRoads = (RoadManager.Instance.roadPrefabs != null) ? RoadManager.Instance.roadPrefabs.Count : 0;
-        int unlocked = RoadUpgradeStore.GetUnlockedRoadCount();
-        bool allUnlocked = (totalRoads > 0 && unlocked >= totalRoads);
-
-        int currentGates = RoadManager.Instance.GetTotalGateCountAllRoads();
-        int cap = RoadManager.Instance.GetTotalGateCap();
-        bool gatesFull = (cap > 0 && currentGates >= cap);
-
-        if (!gatesFull || allUnlocked)
-        {
-            if (upgradeRoadCostText != null) upgradeRoadCostText.gameObject.SetActive(false);
             if (upgradeRoadBtn != null) upgradeRoadBtn.interactable = false;
+            if (upgradeRoadCostText != null) upgradeRoadCostText.text = "-";
             return;
         }
+
+        int unlocked = RoadUpgradeStore.GetUnlockedRoadCount();
+        int max = RoadManager.Instance.roadPrefabs != null ? RoadManager.Instance.roadPrefabs.Count : 0;
+        bool notMaxed = (max == 0) ? true : (unlocked < max);
 
         long cost = RoadUpgradeStore.GetNextUpgradeCost();
-        bool enoughRose = (RoseWallet.Instance != null && RoseWallet.Instance.CurrentRose >= cost);
+        long rose = (RoseWallet.Instance != null) ? RoseWallet.Instance.CurrentRose : 0;
+        bool hasEnoughRose = rose >= cost;
 
-        if (upgradeRoadCostText != null)
-        {
-            upgradeRoadCostText.gameObject.SetActive(true);
-            upgradeRoadCostText.text = cost.ToString("N0");
-        }
+        int totalGates = (GateManager.Instance != null) ? GateManager.Instance.GatesCount : 0;
+        bool hasEnoughGates = totalGates >= RoadManager.Instance.maxGatesPerRoad;
+
+        bool canUpgrade = notMaxed && hasEnoughGates && hasEnoughRose;
 
         if (upgradeRoadBtn != null)
-            upgradeRoadBtn.interactable = enoughRose && !allUnlocked;
+            upgradeRoadBtn.interactable = canUpgrade;
+
+
+        if (upgradeRoadCostText != null)
+            upgradeRoadCostText.text = cost.ToString("N0"); 
+
+        Debug.Log($"[UI UpgradeRoad] totalGates={totalGates} need={RoadManager.Instance.maxGatesPerRoad} " +
+                $"rose={rose} cost={cost} unlocked={unlocked}/{max} can={canUpgrade}");
     }
+
+
 
 
     // ================= GATE UI =================
@@ -381,6 +383,16 @@ public class PanelGamePlay : UICanvas
         heartCapText.text = string.Format(capFormat, current, max);
     }
 
+    void RefreshFlirtBookUI()
+    {
+        if (flirtBookButtonGO == null) return;
+
+        int totalGates = (GateManager.Instance != null) ? GateManager.Instance.GatesCount : 0;
+
+        flirtBookButtonGO.SetActive(totalGates > 0);
+    }
+
+
     // ================= BUTTON EVENTS =================
 
     public void AddHeartBTN()
@@ -401,6 +413,7 @@ public class PanelGamePlay : UICanvas
     {
         bool ok = (GateManager.Instance != null) && GateManager.Instance.SpawnGate();
         RefreshGateCostUI();
+        RefreshFlirtBookUI();  
 
         if (ok)
             GameManager.Instance?.RefreshLapPreview();
@@ -411,16 +424,24 @@ public class PanelGamePlay : UICanvas
 
     public void UpgradeRoadBTN()
     {
-        bool ok = (RoadManager.Instance != null) && RoadManager.Instance.TryUpgradeRoad();
+        Debug.Log("[UI] UpgradeRoadBTN clicked");
+
+        if (RoadManager.Instance == null)
+        {
+            Debug.LogWarning("[UI] RoadManager.Instance is null");
+            return;
+        }
+
+        bool ok = RoadManager.Instance.TryUpgradeRoad();
+        Debug.Log($"[UI] TryUpgradeRoad result = {ok}");
 
         RefreshUpgradeRoadUI();
         RefreshGateCostUI();
 
         if (ok)
-        {
             GameManager.Instance?.RefreshLapPreview();
-        }
     }
+
 
     public void NextRoadBTN()
     {
@@ -438,5 +459,10 @@ public class PanelGamePlay : UICanvas
     public void OpenSettingBTN()
     {
         UIManager.Instance.OpenUI<PanelSetting>();
+    }
+
+    public void CloseAdsBTN()
+    {
+        banner.SetActive(false);
     }
 }

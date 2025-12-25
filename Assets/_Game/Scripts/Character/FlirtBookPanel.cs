@@ -24,6 +24,27 @@ public class FlirtBookPanel : UICanvas
 
     readonly List<CharacterThumbItemUI> spawnedThumbs = new();
 
+    void OnEnable()
+    {
+        FlirtBookUnlockStore.OnUnlocked += OnUnlockedGirl;
+        Build();               
+        if (currentCharacter == null && characters != null && characters.Count > 0)
+            currentCharacter = characters[0];
+        RefreshCurrentUI();
+    }
+
+    void OnDisable()
+    {
+        FlirtBookUnlockStore.OnUnlocked -= OnUnlockedGirl;
+    }
+
+    void OnUnlockedGirl(int girlIndex)
+    {
+        Build();
+
+        RefreshCurrentUI();
+    }
+
     void Start()
     {
         Build();
@@ -43,12 +64,29 @@ public class FlirtBookPanel : UICanvas
 
         if (characters == null) characters = new List<CharacterData>();
 
-        foreach (var c in characters)
+        for (int i = 0; i < characters.Count; i++)
         {
+            var c = characters[i];
+            if (c == null) continue;
+
+            if (!FlirtBookUnlockStore.IsUnlocked(i))
+                continue;
+
             var item = Instantiate(thumbPrefab, content);
             item.Bind(c);
             spawnedThumbs.Add(item);
+
+            if (currentCharacter == null)
+                currentCharacter = c;
         }
+
+        if (spawnedThumbs.Count == 0)
+        {
+            if (centerSelector != null)
+                centerSelector.SetItems(spawnedThumbs); 
+            return;
+        }
+
 
         if (centerSelector != null)
         {
