@@ -486,4 +486,9 @@ public class PanelGamePlay : UICanvas
         HeartWithEnergy.StartAutoBoost(60f);
     }
 
+    public void ReviewBTN()
+    {
+        UIManager.Instance.OpenUI<PanelReview>();
+    }
+
 }
