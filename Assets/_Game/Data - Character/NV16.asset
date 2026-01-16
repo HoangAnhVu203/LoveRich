@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_16
   characterName: Minova
-  avatar: {fileID: 21300000, guid: 5fb80255954b34fa482d1958623a1475, type: 3}
+  avatar: {fileID: 21300000, guid: 4feec1424f6d14e1a9036cf790ed62d5, type: 3}
   description: Stubborn, Charismatic, Smart, Caring, Gentle
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 33322af9b38c940df874037146944827, type: 3}
+    photo: {fileID: 21300000, guid: 99d1caa45a5ca4f87917807d6323c8de, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "You\u2019re trouble, aren\u2019t you?"
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 80e71dec406d649fb8833e1b44a58854, type: 3}
+    photo: {fileID: 21300000, guid: cc7da91efb3134bcbbacf3ebc51f3a36, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "You\u2019re doing something to me."
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: b6f4ad69f2e644a9babe31d74700369c, type: 3}
+    photo: {fileID: 21300000, guid: ccd3f8342246a4431a402d8f4f2b8461, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: I want you closer.
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 9b95abccdb2654b8184c854b3cbb2b6d, type: 3}
+    photo: {fileID: 21300000, guid: 012d7f371232a4386aabb9aece1fbe9c, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: You make me feel restless.
     requiredLevel: 10

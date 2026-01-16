@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_12
   characterName: Lou
-  avatar: {fileID: 21300000, guid: a2e63f141358d4b5590be83f01d34d06, type: 3}
+  avatar: {fileID: 21300000, guid: 87ed090f35051400084eb8f092593434, type: 3}
   description: Sensitive, Reserved, Dedicated, Graceful
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: db9fdd17ede4a408d8cb0433228ca424, type: 3}
+    photo: {fileID: 21300000, guid: 3e39364c89dfa481f840624ba93e8bcf, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: This is getting interesting.
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: b4915ce73fcc84c028917c940f023294, type: 3}
+    photo: {fileID: 21300000, guid: 133d11ef03dc9433c85f05f30fe8793d, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: Stay with me for a bit.
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: c59f1b277655a48469ec4530521362ae, type: 3}
+    photo: {fileID: 21300000, guid: 29a6b471c06774272b0b8f04287f8261, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "You don\u2019t have to hold back too much."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: eb85e029618fd468fa09ea1b4ce65c45, type: 3}
+    photo: {fileID: 21300000, guid: 8be068ec29bb14a3d89c89a933fa0d23, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: I want more than messages.
     requiredLevel: 10

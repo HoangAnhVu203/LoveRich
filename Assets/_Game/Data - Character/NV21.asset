@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_21
   characterName: Valentina
-  avatar: {fileID: 21300000, guid: f2a9fadc0b7ec4fe8b4c51901c66e35f, type: 3}
+  avatar: {fileID: 21300000, guid: 8dfe893682baf413085fae44f5ee5f0c, type: 3}
   description: Elegant, Wise,  Smart, Compassionate
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 03cbbc51d8aea4008bca825642fd2e04, type: 3}
+    photo: {fileID: 21300000, guid: 7a3bc5cc9dde948b380eccd5d8bf4acc, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "You\u2019re dangerous to talk to this late."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 1816c87d0536549d38b07b8f5cd1b10e, type: 3}
+    photo: {fileID: 21300000, guid: 15fedfe56ec4a4e9491c52db1463a9fb, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: This feels personal.
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 4b5b36229e7f1425984f34454f3ea9e9, type: 3}
+    photo: {fileID: 21300000, guid: aac4a6a0f95794fcb8ad4a6a1a490c38, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: You linger in my thoughts.
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 12fb7419954ed488492aff92902194ec, type: 3}
+    photo: {fileID: 21300000, guid: b5b6e916bd8a640479a783fe7ec826b4, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "I\u2019m enjoying this way too much."
     requiredLevel: 10

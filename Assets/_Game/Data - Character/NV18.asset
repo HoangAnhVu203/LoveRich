@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_18
   characterName: Melis
-  avatar: {fileID: 21300000, guid: d648ea79ce7c64a91abe4ac1fbd32991, type: 3}
+  avatar: {fileID: 21300000, guid: 80b4b6c6896814cbd8d326c41a23c54d, type: 3}
   description: Reliable, Charismatic, Strong-willed, Intelligent, Compassionate
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 8388f4f2fba4849fda6fd5648da1b6b5, type: 3}
+    photo: {fileID: 21300000, guid: 6778ace206a3342bc9277d08d4adb2ab, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: You make me feel restless.
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: e2c21850e15414a4dbe069117f8ec3cf, type: 3}
+    photo: {fileID: 21300000, guid: dd23aea25c58f45779d71e153d074c65, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "You\u2019re getting under my skin."
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: aa0c3e7f360aa4fbd8bf47d7efd9695f, type: 3}
+    photo: {fileID: 21300000, guid: d10d8c5e4a5564473a62d7156cccb6c7, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: You know exactly what effect you have.
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: daf3e27b775f5476f804e47927d73bed, type: 3}
+    photo: {fileID: 21300000, guid: 05681d89cb6124c7f8ae06655ed8ca8e, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "You shouldn\u2019t trust me tonight."
     requiredLevel: 10

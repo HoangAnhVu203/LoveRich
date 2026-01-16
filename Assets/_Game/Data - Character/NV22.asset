@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_22
   characterName: Olivia
-  avatar: {fileID: 21300000, guid: 67b9a14a088af4413bdfee3129d185ce, type: 3}
+  avatar: {fileID: 21300000, guid: 0087fa9932b874e449b426fb5a0ed884, type: 3}
   description: Charming, Intelligent, Gentle, Wise, Charismatic
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 94cca7271acdd48a181e7b0fa5f0cd7e, type: 3}
+    photo: {fileID: 21300000, guid: dd7225cbc4fc74c69bdbf224be2f8e8c, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "This is getting a little intense\u2026 in a good way."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: b101fea88d1da46ceb0cc275fd34117b, type: 3}
+    photo: {fileID: 21300000, guid: aee0a22b04af8414aafc084a4416ca27, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: Talking to you feels different.
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 6c847f322e2a54a1cb7133d7e97d1306, type: 3}
+    photo: {fileID: 21300000, guid: 1a7ca1129188b4c6b91b2c782f76e12d, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: Come a bit closer to me.
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: d01e87414d1c24894afb0135ba94d83e, type: 3}
+    photo: {fileID: 21300000, guid: f3d06fe580af848ddad65b852e849f7c, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "I don\u2019t always play it safe."
     requiredLevel: 10

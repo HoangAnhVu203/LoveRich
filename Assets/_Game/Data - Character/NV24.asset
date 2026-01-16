@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_24
   characterName: Zoe
-  avatar: {fileID: 21300000, guid: 124785ef363a74c07b88adc36cfb5430, type: 3}
+  avatar: {fileID: 21300000, guid: 3f56c09ae42464eaea7434735ef5076b, type: 3}
   description: Reserved, Dedicated, Graceful, Strong-willed
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 8b0172240974f4b728be8eab4193ae3a, type: 3}
+    photo: {fileID: 21300000, guid: 749f836021e034f5e82af943bd9b498e, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: I like this quiet moment with you.
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: c0032cada7e084fcc865aec8a393d8b5, type: 3}
+    photo: {fileID: 21300000, guid: 0057359688ee94ad1ab9cb7495e5bb9b, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: This feels more than casual.
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: e61d22bf141604272b23a491069ccf0f, type: 3}
+    photo: {fileID: 21300000, guid: 6b1fb2285cc5247b391705b5e2145e60, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "You\u2019re making this very tempting."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 56c36f73adc044a77992b0e4be71624b, type: 3}
+    photo: {fileID: 21300000, guid: f233dbf80efec48bdaaa7092c0799a61, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "You\u2019re doing something right."
     requiredLevel: 10

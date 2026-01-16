@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: har_17
   characterName: Betrix
-  avatar: {fileID: 21300000, guid: 287877320925e4a65af421b10d1df53c, type: 3}
+  avatar: {fileID: 21300000, guid: 555cc30d4d95c4d80b6607163c9e9ff9, type: 3}
   description: Compassionate, Independent, Strong-willed, Quiet
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 936b001a6732d4630abf2c9a8047359d, type: 3}
+    photo: {fileID: 21300000, guid: a570d09ecf5c64c10a13cdafa736333a, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "You\u2019re distracting me in a dangerous way."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 32d7702098a5b431aabbc2f88f1a65ce, type: 3}
+    photo: {fileID: 21300000, guid: 7960645a1981a4f1fb75bf7dcf7c6417, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: I like how this feels.
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 2bfc69996443b4ff3a37a2ec42d60b54, type: 3}
+    photo: {fileID: 21300000, guid: 60665eb3ef0bf4df4a0fc72099899303, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "You don\u2019t have to hold back too much."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 8ffd55b37d3ed4bd39a74e3e84f02817, type: 3}
+    photo: {fileID: 21300000, guid: ba822e12c492d49949b2c02178cf359c, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "Let\u2019s not pretend this is innocent."
     requiredLevel: 10

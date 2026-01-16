@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_25
   characterName: Elizabeth
-  avatar: {fileID: 21300000, guid: 6588769e04f1641a6876156383f05b35, type: 3}
+  avatar: {fileID: 21300000, guid: b7be4f163a0d8462683cdd813c3df47e, type: 3}
   description: Graceful, Charming, Intelligent, Warm-hearted, Kind
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 82952d0fa6c3349d3b7d388db5bffb8b, type: 3}
+    photo: {fileID: 21300000, guid: f06ac86e98aab486585643b2ef8cec64, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "You\u2019ve got my full attention now."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 69b33d669af204d119ddecc6e9797e32, type: 3}
+    photo: {fileID: 21300000, guid: cb6571507b9cb4eed95d0f2e15e7bd06, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "I\u2019m enjoying wanting you."
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: d7b8e05c9803e4843b9f5f660117fe4d, type: 3}
+    photo: {fileID: 21300000, guid: 1d75ba95103cf4ed692e8625c18d21b0, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "I can\u2019t focus when you\u2019re around."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: c047748c987c14dc8b86bd3dbd94fcb5, type: 3}
+    photo: {fileID: 21300000, guid: 757349213745a43fb9e961908815b88e, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "I shouldn\u2019t be enjoying this so much."
     requiredLevel: 10

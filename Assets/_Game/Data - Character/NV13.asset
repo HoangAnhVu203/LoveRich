@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_13
   characterName: Karina
-  avatar: {fileID: 21300000, guid: 34009d0b2bbd34e56ba502b1ec4f93d8, type: 3}
+  avatar: {fileID: 21300000, guid: 873095c87b92b42058da0c212aaba9aa, type: 3}
   description: Strong-willed, Wise, Intelligent, Charismatic, Independent
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 762a3d21b75364412904f6175492c26c, type: 3}
+    photo: {fileID: 21300000, guid: cae87ade5e1604c8dbceb51e4f96747b, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: You started something.
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 8eebb5c1ce9274e2d85efb4ac79ec718, type: 3}
+    photo: {fileID: 21300000, guid: 3f4495b628856431f8c20e614d9d6088, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "I can\u2019t sleep thinking about you."
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 6262f13f2267c4ca9a0f9370a45b0102, type: 3}
+    photo: {fileID: 21300000, guid: cac80a62827d743e48a2a77570ef1d2b, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: I want you responsive.
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 3e59400827b0f4d8488205d0097d51ab, type: 3}
+    photo: {fileID: 21300000, guid: ef005d96ff8264e8dbb442ef8ef07479, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: I want the tension, not relief.
     requiredLevel: 10

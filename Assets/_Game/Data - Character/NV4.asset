@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_04
   characterName: Tina
-  avatar: {fileID: 21300000, guid: a1e6963c15a1546c2b4a22acdf242053, type: 3}
+  avatar: {fileID: 21300000, guid: 31067c49e291846419deceb0704b9196, type: 3}
   description: Pround, Insecure, Culturally, Passionate, Elegent
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 373c9cd0c0a5146dd8ddb373e50f69af, type: 3}
+    photo: {fileID: 21300000, guid: bd76599575114459cb875a2f51c2acf9, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "Don\u2019t act innocent. I know you\u2019re thinking about me."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 1c541cf0e44394b0ab5d5def8e39d937, type: 3}
+    photo: {fileID: 21300000, guid: 0d38d7b39d8d74049bcf4f59ef76b454, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "You\u2019re making it really hard for me to behave."
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 88025fb326928422c87fc150f9581c10, type: 3}
+    photo: {fileID: 21300000, guid: 83a915f8af6a04edea7d929c64af212e, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: Silence between us feels louder than words.
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: db5a1b830eb07417e81ce49dac6a0a7d, type: 3}
+    photo: {fileID: 21300000, guid: a106411b0c53541cd9f1da6faf30062e, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: I want you focused on me. Nothing else.
     requiredLevel: 10

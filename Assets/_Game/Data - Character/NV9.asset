@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_09
   characterName: Lilia
-  avatar: {fileID: 21300000, guid: 8c9b9c672996b4ea1843d3e38e49a61c, type: 3}
+  avatar: {fileID: 21300000, guid: b514768a48a9b495fad19d6e05ee10ab, type: 3}
   description: Calm, Wise, Creative, Thoughtful
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: c8a2655a3d6d94644b0f60207a1f7751, type: 3}
+    photo: {fileID: 21300000, guid: 747fcaaa3f4904d82871e96c3d978373, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: I want your full attention.
     requiredLevel: 4
   - photoId: p1
     photo: {fileID: 21300000, guid: 41c5aef830da44eb980fa7cd3535b1d4, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: Let me take control.
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: c5f1566a5ab9c4969b7fb0954ae77c46, type: 3}
+    photo: {fileID: 21300000, guid: 8e98bebf9a1934f50a2c51d1ff312d44, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "Do what you\u2019re thinking."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 7b50b637a82144f39aa6c9359a507338, type: 3}
+    photo: {fileID: 21300000, guid: db0b31a3b98454f0185d4177913da38c, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "I\u2019m not sweet when I want someone."
     requiredLevel: 10

@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_14
   characterName: Miya
-  avatar: {fileID: 21300000, guid: d26798b9138cc45e4a3bb76c2be3115a, type: 3}
+  avatar: {fileID: 21300000, guid: f525651f8eb5243f4a518afc97777b04, type: 3}
   description: Gentle, Warm-hearted, Strong-willed,  Graceful
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 05ed179086aee432aa038be6b11db375, type: 3}
+    photo: {fileID: 21300000, guid: 9915ddfc626e2450baab375d83795abf, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "I want you, and I\u2019m not going to soften that."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 732b5682806e041c9962dce0c7302f55, type: 3}
+    photo: {fileID: 21300000, guid: 24daa6fad24414d768839cf4ccaba8dc, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "I\u2019m not trying to be good tonight."
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: a9b3e5d6656af4905a0eb26a81890282, type: 3}
+    photo: {fileID: 21300000, guid: bbb6e80df8e594dfdaec71e9e3d5b19e, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: I want you, plain and simple.
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 99fbc783a041a4a8896418ced2acd24b, type: 3}
+    photo: {fileID: 21300000, guid: 8d5c97037198341e6982618593558307, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: Let me take control.
     requiredLevel: 10

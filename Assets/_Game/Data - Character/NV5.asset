@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_05
   characterName: Maya
-  avatar: {fileID: 21300000, guid: 60ce866aab3a8489c91dfaaa9d9c1d80, type: 3}
+  avatar: {fileID: 21300000, guid: 188854f7601c04900bce4326d3baf2f9, type: 3}
   description: Tired, Thuoghtful, Quiet, Classy
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: c5ba2f0911d9c415a988488afcef1057, type: 3}
+    photo: {fileID: 21300000, guid: e6a388c2132a5450d90e17ba55e391e4, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: I know exactly what effect I have on you.
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 95ab0f0ea7587433d971ad4b011a55f2, type: 3}
+    photo: {fileID: 21300000, guid: dfb934d5df24b4f1493c592c407f0a5f, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "You\u2019re trouble. I\u2019m tempted."
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 14a593449e9de490dae0f3c947a2b571, type: 3}
+    photo: {fileID: 21300000, guid: 4ace35da7f88447948695060195dff2c, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "You\u2019re distracting me in the best possible way."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: a7549c4f925684680bf565b1b310685f, type: 3}
+    photo: {fileID: 21300000, guid: 2ab43475118dd42eeb2b853d80b5c2c0, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "I\u2019m not trying to behave. I\u2019m trying to get what I want."
     requiredLevel: 10

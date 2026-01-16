@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_11
   characterName: Selena
-  avatar: {fileID: 21300000, guid: c795d5339313f4457ac5e6a9069708ca, type: 3}
+  avatar: {fileID: 21300000, guid: 56cc6bff2c12547fe9ad8f6a9bcb31a5, type: 3}
   description: Kind, Caring, Compassionate, Strong-willed, Charismatic
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 9ca4bf414146341bab216e8df2140748, type: 3}
+    photo: {fileID: 21300000, guid: ace9728ea3ddc4225bfbd1a442a73366, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "I don\u2019t mind this kind of trouble."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 7f8999f1f7acb4614a30cb3cf945f48c, type: 3}
+    photo: {fileID: 21300000, guid: fd19b6e1b94444a4f9cdcf28a4a40f4b, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: You make me feel restless.
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 1519ab3cac63549878447c829ae0c629, type: 3}
+    photo: {fileID: 21300000, guid: 5fca9f56fda4c425f8a603e9545601a1, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "You don\u2019t have to hold back too much."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 5bee4e78a1c7247fb88ce6fd320a6095, type: 3}
+    photo: {fileID: 21300000, guid: 1fe4c5462e7b5491b82312d284aae977, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "I can\u2019t focus when you\u2019re around."
     requiredLevel: 10

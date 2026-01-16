@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_02
   characterName: Lena
-  avatar: {fileID: 21300000, guid: 5d7c40b5c11834250884b6c052f7b282, type: 3}
+  avatar: {fileID: 21300000, guid: f4cff04aa95d8479da35ba3029dd39be, type: 3}
   description: Warm - hearted, Playful but Reserved, Dreamy, Fiercely Loyal
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 1555c41e7fef04f5e8282842ab7fa731, type: 3}
+    photo: {fileID: 21300000, guid: d12a627bc296a413ca373d552df5d6e8, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: Careful, if you keep looking at me like that, I might do something bad.
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 1be8ab7a5352c4ffcab06a23e5e4f691, type: 3}
+    photo: {fileID: 21300000, guid: b69fb06df07454b4da4e818d206ddbf3, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "Come closer. I want to see if you\u2019re as confident as you look."
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: e73444a53a52b4d099bf4d35ae13bccb, type: 3}
+    photo: {fileID: 21300000, guid: 13f85083110454379bded59d58e29915, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "Let\u2019s not rush. Anticipation is my favorite part."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 8c0193da1378e4f53ade1410ca96e543, type: 3}
+    photo: {fileID: 21300000, guid: b132b9418fef448b19e0d07e4d0cdd9f, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: I know exactly what effect I have on you.
     requiredLevel: 10

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_01
   characterName: Mia
-  avatar: {fileID: 21300000, guid: a967d4835a5c04f7d807feb96fcbbe7c, type: 3}
+  avatar: {fileID: 21300000, guid: 0af7b21398ef84049ba4ef4e70c36d50, type: 3}
   description: Innocent, Shy, Sweet, Gentle
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: a986353830d304d649f5e36604a4320f, type: 3}
+    photo: {fileID: 21300000, guid: 70c4d50e25a9c4470aff01c10b4bfee3, type: 3}
     spineAsset: {fileID: 11400000, guid: a607802c893864ad79466bc4d53969d8, type: 2}
     loopAnimation: animation
     loop: 1
@@ -30,7 +30,7 @@ MonoBehaviour:
       it make you smile too!!! '
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: ffaff898da6de44b39a327ea7320c0a1, type: 3}
+    photo: {fileID: 21300000, guid: f71ebafde9da14e80817e9daac9c467f, type: 3}
     spineAsset: {fileID: 11400000, guid: 9953c929bedd04cf090c322089d6bb5a, type: 2}
     loopAnimation: animation
     loop: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     comment: I felt a little shy taking this... but I wanted to share it with you.
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 1a6da0285c9f84007b6badbdf627f14b, type: 3}
+    photo: {fileID: 21300000, guid: b3ff1bcd912b34cad8861ac1eb002bea, type: 3}
     spineAsset: {fileID: 11400000, guid: 086cb7566833845f694091983b44a884, type: 2}
     loopAnimation: animation
     loop: 1
@@ -46,7 +46,7 @@ MonoBehaviour:
     comment: Let's cook dinner togerther, I'll be your dessert my love.
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 16ffe78da5a3d42d1adae449b4cb888e, type: 3}
+    photo: {fileID: 21300000, guid: c6058c9c6078c41769f552cd232d8f80, type: 3}
     spineAsset: {fileID: 0}
     loopAnimation: animation
     loop: 1

@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_20
   characterName: Rose
-  avatar: {fileID: 21300000, guid: b932dde38a9dc4e068dadfffed5490d7, type: 3}
+  avatar: {fileID: 21300000, guid: ebda61e4c5e3f4e6db04cf17077321f5, type: 3}
   description: 'Graceful, Independent, Charismatic, '
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 84f232440058344a5a4fdbaf9df04f7b, type: 3}
+    photo: {fileID: 21300000, guid: 0d5c85dd6934a4cfa8926fb6a51561db, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "I\u2019m not completely innocent, you know."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: c2acabae6d7c6427594b4aaa1f422dc1, type: 3}
+    photo: {fileID: 21300000, guid: 044bf3ef0d57b401c912b66c4d44ee85, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "I don\u2019t always play it safe."
     requiredLevel: 6
   - photoId: p2
     photo: {fileID: 21300000, guid: 776c444b049f54cadbc92a9486846646, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: I know how to get attention.
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: d903558cf96054c3d875f3e6edb46457, type: 3}
+    photo: {fileID: 21300000, guid: 39316a31f0aff4862919e121189859b5, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "You\u2019re affecting me more than I expected."
     requiredLevel: 10

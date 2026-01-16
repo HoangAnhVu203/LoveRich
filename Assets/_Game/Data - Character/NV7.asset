@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_07
   characterName: Sophia
-  avatar: {fileID: 21300000, guid: 738af97b9bb2642049e4ec55a42db812, type: 3}
+  avatar: {fileID: 21300000, guid: 64bc3a0b18469471c87f79ad5a095237, type: 3}
   description: Intelligent, Soft-Spoken, Workaholic with a Sweet side
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 5e019dcb4ed194938a420d1dc5736a10, type: 3}
+    photo: {fileID: 21300000, guid: 5a272725ce9bb433c9075f0b6542b168, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: I like where this is going.
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: f1e4dc7606bbf400d8c421ed58fba812, type: 3}
+    photo: {fileID: 21300000, guid: d5e4c182d8d2d4989b60c6450df44ad0, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: You think you can handle me?
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: f769294646c5640ebbbfe242e750e7c8, type: 3}
+    photo: {fileID: 21300000, guid: 7096865346e2840868ccbaf6ff89203a, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: Is it hot in here, or is it just you?
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: 8f6bc7699322645759478d3a89cb32f3, type: 3}
+    photo: {fileID: 21300000, guid: 54e39112e5ecb4e10b619c9be8914e53, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "I don\u2019t chase. But for you, I might bend the rules."
     requiredLevel: 10

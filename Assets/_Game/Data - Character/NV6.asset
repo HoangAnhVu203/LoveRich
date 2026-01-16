@@ -14,30 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_06
   characterName: Isla
-  avatar: {fileID: 21300000, guid: 7e85b1b33ff76417694988c32697676c, type: 3}
+  avatar: {fileID: 21300000, guid: 5ffe5329bc63d4187bd8326fb45266ca, type: 3}
   description: Bold, Confident, Charming, Playful
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 01d5c10ddf34748f0bad13e7070ca30b, type: 3}
+    photo: {fileID: 21300000, guid: 638aefafb95e7414a99a4ffc04e44397, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "I don\u2019t tease unless I plan to follow through."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 379320ec38ed64154adcddb2c7b9a491, type: 3}
+    photo: {fileID: 21300000, guid: bee68b74faef148f69a4d9e89cb27b06, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: Rules make things boring. I prefer temptation.
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 2548e497ad4404335943dc39ee0e2d6f, type: 3}
+    photo: {fileID: 21300000, guid: 9307b05906b5946eda05c860a196c6b8, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "I didn\u2019t plan on being naughty tonight\u2026 but then you showed
       up."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: c51b4ced3e0384a56ae990152194c40f, type: 3}
+    photo: {fileID: 21300000, guid: f9381113bfb1c40c7b4b840935409160, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "I like it when you lose control\u2026 just a little."
     requiredLevel: 10

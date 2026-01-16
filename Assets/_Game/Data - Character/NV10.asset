@@ -14,29 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterId: char_10
   characterName: Lily
-  avatar: {fileID: 21300000, guid: c49a0fde9ca3e4b8f931fc14ab961781, type: 3}
+  avatar: {fileID: 21300000, guid: cd9e3f206bda745aaa2ca4d172ab335d, type: 3}
   description: Adorable, Lovable, Gentle, Secretive
   level: 1
   levelUpCost: 0
   revenueMultiplier: 0.1
   photos:
   - photoId: p0
-    photo: {fileID: 21300000, guid: 33d4816571c9b43b58f3642939ae1bac, type: 3}
+    photo: {fileID: 21300000, guid: 43450a1c7cb7a4f58a6001746c6b0df5, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
     comment: "You\u2019re making it hard for me to stay calm."
     requiredLevel: 4
   - photoId: p1
-    photo: {fileID: 21300000, guid: 7483997e298ba43509f0f8a372cfc2c8, type: 3}
+    photo: {fileID: 21300000, guid: dab6d64e25a2b4f409097cc9b999d898, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
     comment: "Don\u2019t disappear on me."
     requiredLevel: 6
   - photoId: p2
-    photo: {fileID: 21300000, guid: 7312ea7d1a97e48ec92418c0e10b7757, type: 3}
+    photo: {fileID: 21300000, guid: e465eefcd07fe409c9fe146202456473, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
     comment: "You\u2019re not making this easy for me."
     requiredLevel: 8
   - photoId: p3
-    photo: {fileID: 21300000, guid: d894cc51449a4484ca0737a6f42baa6f, type: 3}
+    photo: {fileID: 21300000, guid: dd4a8504483374bb9a32d409fae218d9, type: 3}
+    spineAsset: {fileID: 0}
+    loopAnimation: animation
+    loop: 1
     lockedPhoto: {fileID: 21300000, guid: 2d0925f7f632d4d6799c53bd216f97b5, type: 3}
     comment: "I\u2019m into you."
     requiredLevel: 10
