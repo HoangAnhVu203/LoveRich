@@ -1,0 +1,69 @@
+
+charsx1.png
+size: 1617,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+eye1
+  rotate: false
+  xy: 1004, 3
+  size: 27, 18
+  orig: 30, 20
+  offset: 1, 1
+  index: -1
+eyes2
+  rotate: false
+  xy: 1071, 52
+  size: 20, 20
+  orig: 22, 22
+  offset: 1, 1
+  index: -1
+mi1
+  rotate: false
+  xy: 1004, 23
+  size: 65, 49
+  orig: 67, 51
+  offset: 1, 1
+  index: -1
+mi2
+  rotate: false
+  xy: 1448, 581
+  size: 49, 51
+  orig: 52, 53
+  offset: 1, 1
+  index: -1
+mouth
+  rotate: false
+  xy: 1550, 798
+  size: 49, 25
+  orig: 51, 27
+  offset: 1, 1
+  index: -1
+than
+  rotate: false
+  xy: 1004, 74
+  size: 442, 928
+  orig: 444, 930
+  offset: 1, 1
+  index: -1
+tocmai1
+  rotate: false
+  xy: 1448, 825
+  size: 167, 177
+  orig: 167, 177
+  offset: 0, 0
+  index: -1
+tocmai2
+  rotate: false
+  xy: 1448, 634
+  size: 100, 189
+  orig: 102, 194
+  offset: 1, 4
+  index: -1

@@ -1,0 +1,41 @@
+
+char5.png
+size: 1573,1007
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 5
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1004, 2
+  size: 97, 38
+  orig: 99, 40
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1103, 4
+  size: 47, 36
+  orig: 49, 38
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1152, 8
+  size: 48, 32
+  orig: 50, 34
+  offset: 1, 1
+  index: -1
+ani71
+  rotate: false
+  xy: 1004, 42
+  size: 567, 963
+  orig: 567, 963
+  offset: 0, 0
+  index: -1

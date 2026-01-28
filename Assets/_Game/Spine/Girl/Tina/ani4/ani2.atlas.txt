@@ -1,0 +1,62 @@
+
+ani2.png
+size: 1372,909
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Ellipse 1
+  rotate: false
+  xy: 916, 203
+  size: 161, 85
+  orig: 163, 87
+  offset: 1, 1
+  index: -1
+ani33
+  rotate: true
+  xy: 2, 455
+  size: 452, 913
+  orig: 454, 915
+  offset: 1, 1
+  index: -1
+body1
+  rotate: false
+  xy: 917, 290
+  size: 453, 617
+  orig: 454, 617
+  offset: 0, 0
+  index: -1
+body2
+  rotate: true
+  xy: 2, 2
+  size: 451, 912
+  orig: 453, 914
+  offset: 1, 1
+  index: -1
+eye1
+  rotate: true
+  xy: 939, 174
+  size: 27, 18
+  orig: 29, 20
+  offset: 1, 1
+  index: -1
+eye2
+  rotate: false
+  xy: 916, 180
+  size: 21, 21
+  orig: 23, 23
+  offset: 1, 1
+  index: -1
+mi1
+  rotate: false
+  xy: 1079, 187
+  size: 50, 32
+  orig: 52, 34
+  offset: 1, 1
+  index: -1
+mi2
+  rotate: true
+  xy: 1079, 221
+  size: 67, 20
+  orig: 69, 22
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,48 @@
+
+char12.png
+size: 1749,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1633, 640
+  size: 63, 38
+  orig: 65, 40
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1633, 604
+  size: 58, 34
+  orig: 61, 36
+  offset: 2, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1698, 653
+  size: 45, 25
+  orig: 47, 27
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: false
+  xy: 1633, 680
+  size: 114, 322
+  orig: 116, 324
+  offset: 1, 1
+  index: -1
+ani66
+  rotate: false
+  xy: 1004, 17
+  size: 627, 985
+  orig: 629, 985
+  offset: 2, 0
+  index: -1

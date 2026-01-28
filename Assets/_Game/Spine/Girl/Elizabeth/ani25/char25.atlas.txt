@@ -1,0 +1,48 @@
+
+char25.png
+size: 1748,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1542, 622
+  size: 55, 31
+  orig: 57, 33
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1542, 588
+  size: 52, 32
+  orig: 54, 34
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1004, 11
+  size: 34, 20
+  orig: 36, 22
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: false
+  xy: 1542, 655
+  size: 204, 347
+  orig: 206, 349
+  offset: 1, 1
+  index: -1
+ani111
+  rotate: false
+  xy: 1004, 33
+  size: 536, 969
+  orig: 536, 969
+  offset: 0, 0
+  index: -1

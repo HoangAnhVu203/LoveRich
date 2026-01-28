@@ -1,0 +1,48 @@
+
+ani6.png
+size: 1607,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1495, 680
+  size: 110, 322
+  orig: 110, 322
+  offset: 0, 0
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1495, 650
+  size: 49, 28
+  orig: 51, 31
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1004, 22
+  size: 59, 33
+  orig: 61, 35
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: false
+  xy: 1065, 27
+  size: 45, 28
+  orig: 48, 30
+  offset: 1, 1
+  index: -1
+ani64
+  rotate: false
+  xy: 1004, 57
+  size: 489, 945
+  orig: 492, 945
+  offset: 0, 0
+  index: -1

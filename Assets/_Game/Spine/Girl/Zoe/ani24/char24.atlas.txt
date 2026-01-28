@@ -1,0 +1,55 @@
+
+char24.png
+size: 1858,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1669, 218
+  size: 63, 37
+  orig: 65, 39
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: true
+  xy: 1808, 574
+  size: 60, 38
+  orig: 63, 40
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1669, 187
+  size: 41, 29
+  orig: 43, 32
+  offset: 1, 2
+  index: -1
+Layer 4
+  rotate: false
+  xy: 1669, 257
+  size: 137, 377
+  orig: 139, 408
+  offset: 1, 1
+  index: -1
+Layer 5
+  rotate: false
+  xy: 1669, 636
+  size: 187, 366
+  orig: 190, 368
+  offset: 1, 1
+  index: -1
+ani114
+  rotate: false
+  xy: 1004, 2
+  size: 663, 1000
+  orig: 668, 1001
+  offset: 3, 0
+  index: -1

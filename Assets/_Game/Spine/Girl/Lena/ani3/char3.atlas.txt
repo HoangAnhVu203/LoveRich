@@ -1,0 +1,55 @@
+
+char3.png
+size: 1714,1007
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 5
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1564, 606
+  size: 54, 37
+  orig: 56, 39
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1651, 814
+  size: 48, 30
+  orig: 51, 32
+  offset: 2, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1004, 2
+  size: 45, 36
+  orig: 47, 38
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: false
+  xy: 1564, 645
+  size: 85, 199
+  orig: 87, 204
+  offset: 2, 5
+  index: -1
+Layer 5
+  rotate: false
+  xy: 1564, 846
+  size: 148, 159
+  orig: 153, 159
+  offset: 0, 0
+  index: -1
+ani29
+  rotate: false
+  xy: 1004, 40
+  size: 558, 965
+  orig: 559, 969
+  offset: 1, 0
+  index: -1

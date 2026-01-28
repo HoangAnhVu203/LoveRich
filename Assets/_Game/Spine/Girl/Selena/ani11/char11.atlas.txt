@@ -1,0 +1,41 @@
+
+char11.png
+size: 1277,732
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 1
+  rotate: true
+  xy: 642, 143
+  size: 155, 35
+  orig: 158, 37
+  offset: 1, 1
+  index: -1
+Layer 1 copy
+  rotate: true
+  xy: 2, 2
+  size: 296, 638
+  orig: 297, 639
+  offset: 0, 1
+  index: -1
+Layer 1 copy 2
+  rotate: false
+  xy: 978, 91
+  size: 297, 639
+  orig: 297, 639
+  offset: 0, 0
+  index: -1
+Layer 2
+  rotate: false
+  xy: 642, 108
+  size: 70, 33
+  orig: 72, 35
+  offset: 1, 1
+  index: -1
+ani59
+  rotate: true
+  xy: 2, 300
+  size: 430, 974
+  orig: 430, 974
+  offset: 0, 0
+  index: -1

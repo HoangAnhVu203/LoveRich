@@ -1,0 +1,41 @@
+
+char20.png
+size: 1435,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1077, 28
+  size: 66, 42
+  orig: 68, 44
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1004, 28
+  size: 71, 42
+  orig: 73, 44
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1145, 39
+  size: 50, 31
+  orig: 52, 33
+  offset: 1, 1
+  index: -1
+ani75
+  rotate: false
+  xy: 1004, 72
+  size: 429, 930
+  orig: 433, 932
+  offset: 0, 0
+  index: -1

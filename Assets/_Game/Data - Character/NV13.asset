@@ -38,10 +38,10 @@ MonoBehaviour:
     requiredLevel: 6
   - photoId: p2
     photo: {fileID: 21300000, guid: cac80a62827d743e48a2a77570ef1d2b, type: 3}
-    spineAsset: {fileID: 0}
+    spineAsset: {fileID: 11400000, guid: bf92562b2b50b47d29a9a3e4e3d9998b, type: 2}
     loopAnimation: animation
     loop: 1
-    lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
+    lockedPhoto: {fileID: 21300000, guid: 198cd6f78663a498d81697cd0e3dd24e, type: 3}
     comment: I want you responsive.
     requiredLevel: 8
   - photoId: p3

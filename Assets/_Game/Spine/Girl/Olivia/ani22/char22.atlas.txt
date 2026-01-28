@@ -1,0 +1,41 @@
+
+char22.png
+size: 1121,610
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 1
+  rotate: false
+  xy: 1001, 423
+  size: 64, 43
+  orig: 66, 45
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: true
+  xy: 1001, 354
+  size: 67, 38
+  orig: 69, 40
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1067, 436
+  size: 48, 30
+  orig: 50, 32
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: true
+  xy: 1001, 468
+  size: 140, 118
+  orig: 142, 120
+  offset: 1, 1
+  index: -1
+ani84
+  rotate: true
+  xy: 2, 2
+  size: 606, 997
+  orig: 606, 997
+  offset: 0, 0
+  index: -1

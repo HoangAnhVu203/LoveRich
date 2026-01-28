@@ -1,0 +1,48 @@
+
+anichar8.png
+size: 1607,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1004, 48
+  size: 43, 25
+  orig: 45, 27
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: true
+  xy: 1463, 737
+  size: 265, 142
+  orig: 269, 144
+  offset: 1, 1
+  index: -1
+Layer 5
+  rotate: false
+  xy: 1004, 75
+  size: 56, 29
+  orig: 58, 31
+  offset: 1, 1
+  index: -1
+Layer 6
+  rotate: false
+  xy: 1463, 706
+  size: 49, 29
+  orig: 51, 31
+  offset: 1, 1
+  index: -1
+ani61
+  rotate: false
+  xy: 1004, 106
+  size: 457, 896
+  orig: 459, 900
+  offset: 0, 0
+  index: -1

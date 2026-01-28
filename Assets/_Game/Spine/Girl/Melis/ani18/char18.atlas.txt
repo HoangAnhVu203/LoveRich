@@ -1,0 +1,48 @@
+
+char18.png
+size: 1488,1013
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 11
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1172, 42
+  size: 69, 38
+  orig: 71, 40
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1172, 3
+  size: 64, 37
+  orig: 66, 39
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1243, 57
+  size: 47, 23
+  orig: 49, 25
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: true
+  xy: 1004, 2
+  size: 78, 166
+  orig: 80, 168
+  offset: 1, 1
+  index: -1
+ani86
+  rotate: false
+  xy: 1004, 82
+  size: 482, 929
+  orig: 488, 930
+  offset: 4, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+char15.png
+size: 1454,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1004, 13
+  size: 60, 31
+  orig: 62, 33
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1348, 702
+  size: 57, 32
+  orig: 59, 34
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1066, 18
+  size: 42, 26
+  orig: 44, 28
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: false
+  xy: 1348, 736
+  size: 104, 266
+  orig: 106, 268
+  offset: 1, 1
+  index: -1
+ani102
+  rotate: false
+  xy: 1004, 46
+  size: 342, 956
+  orig: 342, 956
+  offset: 0, 0
+  index: -1

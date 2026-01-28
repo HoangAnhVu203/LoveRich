@@ -22,7 +22,7 @@ MonoBehaviour:
   photos:
   - photoId: p0
     photo: {fileID: 21300000, guid: 70c4d50e25a9c4470aff01c10b4bfee3, type: 3}
-    spineAsset: {fileID: 11400000, guid: a607802c893864ad79466bc4d53969d8, type: 2}
+    spineAsset: {fileID: 0}
     loopAnimation: animation
     loop: 1
     lockedPhoto: {fileID: 21300000, guid: 0e560657425c549b5be0bae1c0dd7266, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
     requiredLevel: 4
   - photoId: p1
     photo: {fileID: 21300000, guid: f71ebafde9da14e80817e9daac9c467f, type: 3}
-    spineAsset: {fileID: 11400000, guid: 9953c929bedd04cf090c322089d6bb5a, type: 2}
+    spineAsset: {fileID: 0}
     loopAnimation: animation
     loop: 1
     lockedPhoto: {fileID: 21300000, guid: c39500bbcdffe43739bef2df6c722b35, type: 3}
@@ -39,10 +39,10 @@ MonoBehaviour:
     requiredLevel: 6
   - photoId: p2
     photo: {fileID: 21300000, guid: b3ff1bcd912b34cad8861ac1eb002bea, type: 3}
-    spineAsset: {fileID: 11400000, guid: 086cb7566833845f694091983b44a884, type: 2}
+    spineAsset: {fileID: 11400000, guid: 0f1fcde7827144a7ea1666a9331da714, type: 2}
     loopAnimation: animation
     loop: 1
-    lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
+    lockedPhoto: {fileID: 21300000, guid: 198cd6f78663a498d81697cd0e3dd24e, type: 3}
     comment: Let's cook dinner togerther, I'll be your dessert my love.
     requiredLevel: 8
   - photoId: p3

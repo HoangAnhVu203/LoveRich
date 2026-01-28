@@ -21,7 +21,7 @@ public class FlirtBookPanel : UICanvas
     [SerializeField, Range(0f, 1f)] float unlockedAlpha = 1f;
     [SerializeField] int photoUnlockLevel = 4;
     [SerializeField] Text revenueBonusText;
-
+    [SerializeField] Text levelUpMoney;
 
     CharacterData currentCharacter;
 
@@ -101,8 +101,8 @@ public class FlirtBookPanel : UICanvas
             };
         }
 
-        if (characters.Count > 0)
-            currentCharacter = characters[0];
+        // if (characters.Count > 0)
+        //     currentCharacter = characters[0];
 
     }
 
@@ -119,15 +119,18 @@ public class FlirtBookPanel : UICanvas
         if (currentCharacter == null) return;
 
         int lv = GetCurrentLevel(currentCharacter);
+
+        Debug.Log($"[FlirtBook] charName={currentCharacter.characterName} id='{currentCharacter.characterId}' lv={lv}");
+
         if (infoPanel != null)
             infoPanel.Show(currentCharacter, lv);
 
         RefreshPhotoButtonState(lv);
-
         RefreshLevelUpButtonState(lv);
-
         RefreshRevenueBonusUI(lv);
+        RefreshLevelUpMoneyUI(lv);
     }
+
 
     void RefreshPhotoButtonState(int lv)
     {
@@ -169,20 +172,34 @@ public class FlirtBookPanel : UICanvas
         if (lv >= CharacterProgressStore.MAX_LEVEL) return;
 
         int defaultLv = currentCharacter.level <= 0 ? 1 : currentCharacter.level;
-        int newLv = CharacterProgressStore.LevelUp(currentCharacter.characterId, defaultLv);
+
+        const long baseCost = 250;
+        const int mult = 6;
+
+        if (!CharacterProgressStore.TryLevelUpWithMoney(
+                currentCharacter.characterId,
+                defaultLv,
+                baseCost,
+                mult,
+                out int newLv,
+                out long paid))
+        {
+            long need = CharacterProgressStore.GetLevelUpCost(lv, baseCost, mult);
+            Debug.Log($"[LevelUp] Not enough money. Need {need:N0}");
+            return;
+        }
 
         if (infoPanel != null)
             infoPanel.Refresh(newLv);
 
         RefreshPhotoButtonState(newLv);
-
         RefreshLevelUpButtonState(newLv);
-
         RefreshRevenueBonusUI(newLv);
+        RefreshCurrentUI();
 
-
-        Debug.Log($"[LevelUp] {currentCharacter.characterId} -> LEVEL {newLv}");
+        Debug.Log($"[LevelUp] {currentCharacter.characterId} -> LEVEL {newLv} (paid {paid:N0})");
     }
+
 
     public void OpenPhotoBookBTN()
     {
@@ -209,4 +226,22 @@ public class FlirtBookPanel : UICanvas
     {
         UIManager.Instance.CloseUIDirectly<FlirtBookPanel>();
     }
+
+    void RefreshLevelUpMoneyUI(int lv)
+    {
+        if (levelUpMoney == null) return;
+
+        if (lv >= CharacterProgressStore.MAX_LEVEL)
+        {
+            levelUpMoney.text = "MAX";
+            return;
+        }
+
+        const long baseCost = 250;
+        const int mult = 6;
+
+        long cost = CharacterProgressStore.GetLevelUpCost(lv, baseCost, mult);
+        levelUpMoney.text = cost.ToString("N0") + " $";
+    } 
+
 }

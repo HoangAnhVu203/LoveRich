@@ -38,10 +38,10 @@ MonoBehaviour:
     requiredLevel: 6
   - photoId: p2
     photo: {fileID: 21300000, guid: cb615ea1a881042dc9adf5ddc90d6ff5, type: 3}
-    spineAsset: {fileID: 0}
+    spineAsset: {fileID: 11400000, guid: 4b7ba9edf8caa41a19f69a62190f54ae, type: 2}
     loopAnimation: animation
     loop: 1
-    lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
+    lockedPhoto: {fileID: 21300000, guid: 198cd6f78663a498d81697cd0e3dd24e, type: 3}
     comment: "I\u2019m enjoying this tension."
     requiredLevel: 8
   - photoId: p3

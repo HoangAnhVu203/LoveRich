@@ -1,0 +1,55 @@
+
+char13.png
+size: 1693,1244
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 242
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: true
+  xy: 1649, 223
+  size: 76, 41
+  orig: 78, 43
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1568, 257
+  size: 79, 42
+  orig: 81, 44
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1568, 225
+  size: 55, 30
+  orig: 57, 32
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: true
+  xy: 1004, 22
+  size: 277, 562
+  orig: 283, 562
+  offset: 0, 0
+  index: -1
+Layer 5
+  rotate: true
+  xy: 2, 2
+  size: 238, 613
+  orig: 245, 617
+  offset: 7, 3
+  index: -1
+ani83
+  rotate: false
+  xy: 1004, 301
+  size: 687, 941
+  orig: 1002, 1002
+  offset: 170, 0
+  index: -1

@@ -1,0 +1,48 @@
+
+char7.png
+size: 1768,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1422, 645
+  size: 344, 357
+  orig: 346, 359
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: true
+  xy: 1422, 325
+  size: 67, 47
+  orig: 69, 49
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1422, 283
+  size: 68, 40
+  orig: 71, 42
+  offset: 2, 1
+  index: -1
+Layer 4
+  rotate: true
+  xy: 1422, 394
+  size: 249, 192
+  orig: 251, 195
+  offset: 1, 1
+  index: -1
+ani97
+  rotate: false
+  xy: 1004, 63
+  size: 416, 939
+  orig: 416, 939
+  offset: 0, 0
+  index: -1

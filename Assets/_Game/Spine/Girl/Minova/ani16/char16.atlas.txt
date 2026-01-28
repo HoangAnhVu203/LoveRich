@@ -1,0 +1,48 @@
+
+char16.png
+size: 1619,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1424, 707
+  size: 58, 33
+  orig: 60, 35
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1004, 28
+  size: 59, 34
+  orig: 61, 36
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1065, 37
+  size: 38, 25
+  orig: 40, 27
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: true
+  xy: 1424, 742
+  size: 260, 193
+  orig: 262, 195
+  offset: 1, 1
+  index: -1
+ani94
+  rotate: false
+  xy: 1004, 64
+  size: 418, 938
+  orig: 418, 938
+  offset: 0, 0
+  index: -1

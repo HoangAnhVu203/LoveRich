@@ -38,10 +38,10 @@ MonoBehaviour:
     requiredLevel: 6
   - photoId: p2
     photo: {fileID: 21300000, guid: 83a915f8af6a04edea7d929c64af212e, type: 3}
-    spineAsset: {fileID: 0}
+    spineAsset: {fileID: 11400000, guid: f2cd556b271824c1a95d8a84afdfe95f, type: 2}
     loopAnimation: animation
     loop: 1
-    lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
+    lockedPhoto: {fileID: 21300000, guid: 198cd6f78663a498d81697cd0e3dd24e, type: 3}
     comment: Silence between us feels louder than words.
     requiredLevel: 8
   - photoId: p3

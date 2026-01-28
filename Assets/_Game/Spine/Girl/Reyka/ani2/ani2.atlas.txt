@@ -1,0 +1,41 @@
+
+ani2.png
+size: 1195,1040
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 1
+  rotate: false
+  xy: 1044, 649
+  size: 64, 39
+  orig: 66, 41
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 2, 2
+  size: 60, 34
+  orig: 62, 36
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1044, 690
+  size: 149, 348
+  orig: 151, 350
+  offset: 1, 1
+  index: -1
+ani27
+  rotate: false
+  xy: 2, 38
+  size: 519, 1000
+  orig: 521, 1002
+  offset: 1, 1
+  index: -1
+ani27 copy
+  rotate: false
+  xy: 523, 38
+  size: 519, 1000
+  orig: 521, 1002
+  offset: 1, 1
+  index: -1

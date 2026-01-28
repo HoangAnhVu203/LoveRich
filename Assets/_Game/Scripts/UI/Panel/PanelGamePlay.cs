@@ -64,7 +64,11 @@ public class PanelGamePlay : UICanvas
 
     [Header("Building Claim Item")]
     [SerializeField] GameObject collectButtonGO;   
-    [SerializeField] Button collectButton;      
+    [SerializeField] Button collectButton;  
+
+    [Header("Building Book UI")]
+    [SerializeField] GameObject buildingBookButtonGO;
+  
     private float pulseScale = 1.15f;
     private float pulseSpeed = 6f;
     Coroutine _pulseCR;   
@@ -170,6 +174,7 @@ public class PanelGamePlay : UICanvas
         RefreshGateCostUI();
         RefreshUpgradeRoadUI();
         RefreshFlirtBookUI();  
+        RefreshBuildingBookUI();
     }
 
     // ================= MAIN REFRESH =================
@@ -558,6 +563,7 @@ public class PanelGamePlay : UICanvas
         RoadManager.Instance?.NextRoad();
         RefreshGateCostUI();
         RefreshUpgradeRoadUI();
+        RefreshBuildingBookUI();
         GameManager.Instance?.RefreshLapPreview();
     }
 
@@ -587,5 +593,22 @@ public class PanelGamePlay : UICanvas
     {
         UIManager.Instance.OpenUI<PanelBuilding>();
     }
+
+    void RefreshBuildingBookUI()
+    {
+        if (buildingBookButtonGO == null)
+            return;
+
+        if (RoadManager.Instance == null)
+        {
+            buildingBookButtonGO.SetActive(false);
+            return;
+        }
+
+        int roadIndex = RoadManager.Instance.CurrentRoadIndex;
+
+        buildingBookButtonGO.SetActive(roadIndex >= 1);
+    }
+
 
 }

@@ -1,0 +1,55 @@
+
+char9.png
+size: 1507,1004
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 2
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1004, 26
+  size: 53, 26
+  orig: 55, 28
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1411, 629
+  size: 49, 25
+  orig: 51, 27
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1059, 27
+  size: 34, 25
+  orig: 36, 27
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: false
+  xy: 1411, 813
+  size: 94, 189
+  orig: 97, 191
+  offset: 2, 1
+  index: -1
+Layer 5
+  rotate: false
+  xy: 1411, 656
+  size: 91, 155
+  orig: 94, 157
+  offset: 2, 1
+  index: -1
+ani113
+  rotate: false
+  xy: 1004, 54
+  size: 405, 948
+  orig: 405, 948
+  offset: 0, 0
+  index: -1

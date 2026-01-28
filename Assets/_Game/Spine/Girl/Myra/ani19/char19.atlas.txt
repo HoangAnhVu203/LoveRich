@@ -1,0 +1,48 @@
+
+char19.png
+size: 1584,1006
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 4
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1488, 719
+  size: 57, 29
+  orig: 59, 31
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1488, 659
+  size: 43, 28
+  orig: 45, 30
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1488, 689
+  size: 48, 28
+  orig: 50, 30
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: false
+  xy: 1488, 750
+  size: 94, 254
+  orig: 94, 254
+  offset: 0, 0
+  index: -1
+ani73
+  rotate: false
+  xy: 1004, 2
+  size: 482, 1002
+  orig: 482, 1002
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+char21.png
+size: 1737,1381
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 0
+  rotate: false
+  xy: 2, 379
+  size: 1000, 1000
+  orig: 1002, 1002
+  offset: 1, 1
+  index: -1
+Layer 1
+  rotate: false
+  xy: 1442, 290
+  size: 78, 41
+  orig: 80, 43
+  offset: 1, 1
+  index: -1
+Layer 2
+  rotate: false
+  xy: 1442, 333
+  size: 80, 42
+  orig: 82, 44
+  offset: 1, 1
+  index: -1
+Layer 3
+  rotate: false
+  xy: 1524, 345
+  size: 49, 30
+  orig: 51, 32
+  offset: 1, 1
+  index: -1
+Layer 4
+  rotate: true
+  xy: 2, 2
+  size: 375, 735
+  orig: 377, 737
+  offset: 1, 1
+  index: -1
+Layer 5
+  rotate: true
+  xy: 739, 9
+  size: 366, 701
+  orig: 368, 703
+  offset: 1, 1
+  index: -1
+ani77
+  rotate: false
+  xy: 1004, 377
+  size: 731, 1002
+  orig: 1002, 1002
+  offset: 155, 0
+  index: -1

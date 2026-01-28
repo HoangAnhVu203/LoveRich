@@ -38,10 +38,10 @@ MonoBehaviour:
     requiredLevel: 6
   - photoId: p2
     photo: {fileID: 21300000, guid: 4c8732909518949f084c19de9d67e721, type: 3}
-    spineAsset: {fileID: 0}
+    spineAsset: {fileID: 11400000, guid: 48e954372b01744758e4893dbf13b786, type: 2}
     loopAnimation: animation
     loop: 1
-    lockedPhoto: {fileID: 21300000, guid: 26ef2386f4f5c42bdbb634dddb814210, type: 3}
+    lockedPhoto: {fileID: 21300000, guid: 198cd6f78663a498d81697cd0e3dd24e, type: 3}
     comment: "You\u2019re dangerous to talk to this late."
     requiredLevel: 8
   - photoId: p3

@@ -44,4 +44,44 @@ public static class CharacterProgressStore
         }
     }
 
+    public static long GetLevelUpCost(int currentLevel, long baseCost = 250, int multiplier = 6)
+    {
+        currentLevel = Mathf.Clamp(currentLevel, 1, MAX_LEVEL);
+        int exp = Mathf.Max(0, currentLevel - 1);
+
+        double cost = baseCost * System.Math.Pow(multiplier, exp);
+
+        if (cost > long.MaxValue) return long.MaxValue;
+        return (long)System.Math.Round(cost);
+    }
+
+    public static bool TryLevelUpWithMoney(
+        string characterId,
+        int defaultLevel,
+        long baseCost,
+        int multiplier,
+        out int newLevel,
+        out long costPaid)
+    {
+        newLevel = GetLevel(characterId, defaultLevel);
+        costPaid = 0;
+
+        if (newLevel >= MAX_LEVEL) return false;
+
+        long cost = GetLevelUpCost(newLevel, baseCost, multiplier);
+
+        if (PlayerMoney.Instance == null) return false;
+
+        if (PlayerMoney.Instance.currentMoney < cost) return false;
+
+        PlayerMoney.Instance.AddMoney(-cost);
+
+        int lvAfter = LevelUp(characterId, defaultLevel);
+
+        newLevel = lvAfter;
+        costPaid = cost;
+        return true;
+    }
+
+
 }
