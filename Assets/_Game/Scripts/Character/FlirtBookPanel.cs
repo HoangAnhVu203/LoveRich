@@ -244,4 +244,27 @@ public class FlirtBookPanel : UICanvas
         levelUpMoney.text = cost.ToString("N0") + " $";
     } 
 
+    public void OnLevelUpFreeClicked()
+    {
+        if (currentCharacter == null) return;
+
+        int lv = GetCurrentLevel(currentCharacter);
+        if (lv >= CharacterProgressStore.MAX_LEVEL) return;
+
+        int defaultLv = currentCharacter.level <= 0 ? 1 : currentCharacter.level;
+
+        if (!CharacterProgressStore.TryLevelUpFree(currentCharacter.characterId, defaultLv, out int newLv))
+            return;
+
+        if (infoPanel != null)
+            infoPanel.Refresh(newLv);
+
+        RefreshPhotoButtonState(newLv);
+        RefreshLevelUpButtonState(newLv);
+        RefreshRevenueBonusUI(newLv);
+        RefreshCurrentUI();
+
+        Debug.Log($"[LevelUpFree] {currentCharacter.characterId} -> LEVEL {newLv}");
+    }
+
 }

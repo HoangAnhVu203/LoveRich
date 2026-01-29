@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class HeartChainManager : MonoBehaviour
+public class HeartChainManager : Singleton<HeartChainManager>
 {
     [Header("Heart list (0 = leader)")]
     public List<Transform> hearts = new List<Transform>();

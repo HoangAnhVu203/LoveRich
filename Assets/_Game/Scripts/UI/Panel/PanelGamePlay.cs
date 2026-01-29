@@ -68,6 +68,12 @@ public class PanelGamePlay : UICanvas
 
     [Header("Building Book UI")]
     [SerializeField] GameObject buildingBookButtonGO;
+
+    [Header("Rose Fly FX")]
+    [SerializeField] UIFlyIconFX roseFlyFX;
+    [SerializeField] RectTransform addBtnRT;
+    [SerializeField] RectTransform mergeBtnRT;
+    [SerializeField] RectTransform roseTargetRT;
   
     private float pulseScale = 1.15f;
     private float pulseSpeed = 6f;
@@ -512,7 +518,21 @@ public class PanelGamePlay : UICanvas
 
     public void AddHeartBTN()
     {
-        HeartManager.Instance.AddHeart();
+        int before = HeartChainManager.Instance != null
+            ? HeartChainManager.Instance.hearts.Count
+            : 0;
+
+        HeartManager.Instance?.AddHeart();
+
+        int after = HeartChainManager.Instance != null
+            ? HeartChainManager.Instance.hearts.Count
+            : before;
+
+        bool ok = after > before;
+
+        if (ok && roseFlyFX != null)
+            roseFlyFX.Play(addBtnRT, roseTargetRT);
+
         Refresh();
         ForceRefreshMergeButton();
     }
@@ -520,6 +540,7 @@ public class PanelGamePlay : UICanvas
     public void MergeHeartBTN()
     {
         HeartManager.Instance.MergeAnyTriple();
+        roseFlyFX.Play(addBtnRT, roseTargetRT);
         Refresh();
         ForceRefreshMergeButton();
     }
@@ -609,6 +630,5 @@ public class PanelGamePlay : UICanvas
 
         buildingBookButtonGO.SetActive(roadIndex >= 1);
     }
-
 
 }

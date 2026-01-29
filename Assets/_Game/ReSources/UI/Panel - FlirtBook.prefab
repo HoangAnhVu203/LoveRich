@@ -1460,7 +1460,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5193982656125196559}
         m_TargetAssemblyTypeName: FlirtBookPanel, Assembly-CSharp
-        m_MethodName: OnLevelUpClicked
+        m_MethodName: OnLevelUpFreeClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

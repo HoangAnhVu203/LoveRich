@@ -83,5 +83,15 @@ public static class CharacterProgressStore
         return true;
     }
 
+    public static bool TryLevelUpFree(string characterId, int defaultLevel, out int newLevel)
+    {
+        newLevel = GetLevel(characterId, defaultLevel);
+        if (newLevel >= MAX_LEVEL) return false;
+
+        newLevel++;
+        SetLevel(characterId, newLevel);
+        return true;
+    }
+
 
 }

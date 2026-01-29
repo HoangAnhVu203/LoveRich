@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2041998508391194977}
   - component: {fileID: 1034595167646429237}
   - component: {fileID: 7210213938515391849}
+  - component: {fileID: 5749672880276504464}
   m_Layer: 5
   m_Name: Button - Message
   m_TagString: Untagged
@@ -132,6 +133,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5749672880276504464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103160578045591222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 7849149135838361981}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &176784320401541536
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +312,7 @@ GameObject:
   - component: {fileID: 8914249355042746862}
   - component: {fileID: 4763211186411919004}
   - component: {fileID: 3597220698762673784}
+  - component: {fileID: 2214617763261038060}
   m_Layer: 5
   m_Name: Button - AddHeart
   m_TagString: Untagged
@@ -419,6 +438,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2214617763261038060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470865716539872228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 7995374803415709191}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &702351584570578033
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +715,7 @@ GameObject:
   - component: {fileID: 1477103528196816537}
   - component: {fileID: 3115111213156261329}
   - component: {fileID: 4133010423506094033}
+  - component: {fileID: 4615332246198735922}
   m_Layer: 5
   m_Name: Button - Merge
   m_TagString: Untagged
@@ -805,6 +842,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4615332246198735922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186822161077177662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 1608201005694419600}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &1233720929840700531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1625,7 @@ GameObject:
   - component: {fileID: 7865071347473639400}
   - component: {fileID: 2285099258880612705}
   - component: {fileID: 2137567165744805369}
+  - component: {fileID: 5839740904864472551}
   m_Layer: 5
   m_Name: UpdateRoad
   m_TagString: Untagged
@@ -1695,6 +1750,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5839740904864472551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552755791420160638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 7541310963617581638}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &2578227841843548597
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,6 +2420,7 @@ GameObject:
   - component: {fileID: 729651990100164145}
   - component: {fileID: 5278913958981815490}
   - component: {fileID: 6280635870180082670}
+  - component: {fileID: 5663674271906736004}
   m_Layer: 5
   m_Name: Button - Claim
   m_TagString: Untagged
@@ -2468,6 +2541,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5663674271906736004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3667376837840545708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 132563903895866400}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &3852231349272532506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,6 +2857,7 @@ GameObject:
   - component: {fileID: 1555019842331724710}
   - component: {fileID: 117294450950827766}
   - component: {fileID: 3637573842473140017}
+  - component: {fileID: 7990700687348956506}
   m_Layer: 5
   m_Name: Button - FlirtBook
   m_TagString: Untagged
@@ -2783,14 +2874,14 @@ RectTransform:
   m_GameObject: {fileID: 4205103014922993549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9126590594219474152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 65.5, y: 494}
+  m_AnchoredPosition: {x: 75, y: 496}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1555019842331724710
@@ -2821,7 +2912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c126697f032ed470cb6c32275ccdd7f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aefc088cfa61c41c9bdfb3031a7469a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2887,6 +2978,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7990700687348956506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205103014922993549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 8896377570595845642}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &4566477528809444745
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,6 +3007,7 @@ GameObject:
   - component: {fileID: 8199009711143954825}
   - component: {fileID: 253967710175472144}
   - component: {fileID: 4722521191575947892}
+  - component: {fileID: 8551735347669069699}
   m_Layer: 5
   m_Name: Image - Hammer
   m_TagString: Untagged
@@ -2915,15 +3024,15 @@ RectTransform:
   m_GameObject: {fileID: 4566477528809444745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.175, y: 0.175, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9126590594219474152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 97, y: 356}
-  m_SizeDelta: {x: 300, y: 150}
+  m_AnchoredPosition: {x: 65.5, y: 358}
+  m_SizeDelta: {x: 608, y: 588}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8199009711143954825
 CanvasRenderer:
@@ -2953,7 +3062,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 24d0d6f1e008e444e91cdcaa8b804c7d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c668012056326460c8b8a62b1cf0e644, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3019,6 +3128,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8551735347669069699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566477528809444745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 8243259811467852240}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &4779216388384837139
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,6 +3458,7 @@ GameObject:
   - component: {fileID: 1939616989482230213}
   - component: {fileID: 5000369411966379692}
   - component: {fileID: 8998198739858876612}
+  - component: {fileID: 3086597991290189993}
   m_Layer: 5
   m_Name: Button - AddGirl
   m_TagString: Untagged
@@ -3455,6 +3582,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3086597991290189993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5396117529137598881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 3021570566209817423}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &5449885288365744142
 GameObject:
   m_ObjectHideFlags: 0
@@ -3916,6 +4060,7 @@ GameObject:
   - component: {fileID: 7751879274733333386}
   - component: {fileID: 696084791697852653}
   - component: {fileID: 6648661219961112350}
+  - component: {fileID: 2524606100140678854}
   m_Layer: 5
   m_Name: Button - BoostSADS
   m_TagString: Untagged
@@ -4037,6 +4182,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2524606100140678854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202686567328525652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 2641261083465089158}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &6256462756384835634
 GameObject:
   m_ObjectHideFlags: 0
@@ -4124,6 +4286,7 @@ GameObject:
   - component: {fileID: 6444861438694395757}
   - component: {fileID: 4046361264468694001}
   - component: {fileID: 8455538545584170787}
+  - component: {fileID: 3599816558085374437}
   m_Layer: 5
   m_Name: Panel - GamePlay
   m_TagString: Untagged
@@ -4242,6 +4405,32 @@ MonoBehaviour:
   collectButtonGO: {fileID: 3667376837840545708}
   collectButton: {fileID: 6280635870180082670}
   buildingBookButtonGO: {fileID: 4566477528809444745}
+  roseFlyFX: {fileID: 3599816558085374437}
+  addBtnRT: {fileID: 7995374803415709191}
+  mergeBtnRT: {fileID: 1608201005694419600}
+  roseTargetRT: {fileID: 1753421431087884044}
+--- !u!114 &3599816558085374437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6380881817449239533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84bf98876f9a84da0bc502536069bbef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIFlyIconFX
+  rootCanvas: {fileID: 0}
+  fxRoot: {fileID: 9126590594219474152}
+  iconPrefab: {fileID: 2142148390200912456, guid: 1223d42100a9e4cb9a494ac4432f4934, type: 3}
+  duration: 2
+  arcHeight: 180
+  startScale: 0.2
+  endScale: 0.2
+  minIcons: 1
+  maxIcons: 1
+  scatterPx: 35
 --- !u!1 &6471157827655117715
 GameObject:
   m_ObjectHideFlags: 0
@@ -4254,6 +4443,7 @@ GameObject:
   - component: {fileID: 3161293068327919120}
   - component: {fileID: 4010045771385150648}
   - component: {fileID: 6498671788913854788}
+  - component: {fileID: 6493082692960985326}
   m_Layer: 5
   m_Name: Button - Setting
   m_TagString: Untagged
@@ -4374,6 +4564,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6493082692960985326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6471157827655117715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 277700969685815502}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &6748435187763664142
 GameObject:
   m_ObjectHideFlags: 0
@@ -4656,6 +4863,7 @@ GameObject:
   - component: {fileID: 8933222040107421197}
   - component: {fileID: 3996325748239728174}
   - component: {fileID: 335578814430804697}
+  - component: {fileID: 7202994052824779835}
   m_Layer: 5
   m_Name: Button - Boost Update
   m_TagString: Untagged
@@ -4777,6 +4985,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7202994052824779835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247787800007093769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d76d2b6e57843969ebc0185777ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonPunch
+  target: {fileID: 5215145030615241242}
+  scaleUp: 1.12
+  upTime: 0.1
+  downTime: 0.12
+  useUnscaledTime: 1
 --- !u!1 &8275725939487988457
 GameObject:
   m_ObjectHideFlags: 0
