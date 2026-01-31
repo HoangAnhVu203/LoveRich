@@ -61,6 +61,13 @@ public class PanelGamePlay : UICanvas
     [Header("Boost Button")]
     [SerializeField] Button boostAdsBtn;
     [SerializeField] Text boostTxt; 
+    [SerializeField] Image boostFillImage;
+    [SerializeField] Image offerIconImage;   
+    [SerializeField] Sprite boostSprite;
+    [SerializeField] Sprite roseSprite;
+    [SerializeField] Sprite heartSprite;
+
+
 
     [Header("Building Claim Item")]
     [SerializeField] GameObject collectButtonGO;   
@@ -73,7 +80,27 @@ public class PanelGamePlay : UICanvas
     [SerializeField] UIFlyIconFX roseFlyFX;
     [SerializeField] RectTransform addBtnRT;
     [SerializeField] RectTransform mergeBtnRT;
-    [SerializeField] RectTransform roseTargetRT;
+    [SerializeField] RectTransform roseTargetRT; 
+
+    // ================= ROTATING BOOST OFFER =================
+    private enum BoostOffer
+    {
+        Boost60s,
+        Rose20,
+        Heart10
+    }
+
+    [SerializeField] private float offerSwitchInterval = 60f;
+    [SerializeField] private BoostOffer[] offerCycle = new BoostOffer[]
+    {
+        BoostOffer.Boost60s,
+        BoostOffer.Rose20,
+        BoostOffer.Heart10
+    };
+
+    private int _offerIndex = 0;
+    private float _nextOfferSwitchTime = 0f;
+
   
     private float pulseScale = 1.15f;
     private float pulseSpeed = 6f;
@@ -82,6 +109,7 @@ public class PanelGamePlay : UICanvas
     float _nextCheck;
 
     Image _btnImage;
+    private float _offerStartTime;
 
     void Awake()
     {
@@ -121,6 +149,8 @@ public class PanelGamePlay : UICanvas
         Refresh();
         ForceRefreshMergeButton();
         RefreshState();
+        InitOfferCycle();
+        UpdateBoostOfferUI();
     }
 
     void OnDisable()
@@ -135,21 +165,33 @@ public class PanelGamePlay : UICanvas
 
     void Update()
     {
-        bool isAuto = HeartWithEnergy.IsAutoBoostingGlobal;
-        if (boostAdsBtn != null) boostAdsBtn.interactable = !isAuto;
+        UpdateBoostFill();
 
-        if (boostTxt != null)
+        bool isAuto = HeartWithEnergy.IsAutoBoostingGlobal;
+
+        // đang auto boost => vẫn hiện countdown + khóa nút
+        if (isAuto)
         {
-            if (isAuto)
+            if (boostAdsBtn != null) boostAdsBtn.interactable = false;
+
+            if (boostTxt != null)
             {
                 int s = Mathf.CeilToInt(HeartWithEnergy.GetAutoBoostRemaining());
                 boostTxt.text = $"BOOST {s}s";
             }
-            else
-            {
-                boostTxt.text = "+60s BOOST";
-            }
         }
+        else
+        {
+            // không auto => xoay vòng offer theo 60s
+            AdvanceOfferIfNeeded();
+
+            if (boostAdsBtn != null)
+                boostAdsBtn.interactable = CanApplyCurrentOffer();
+
+            if (boostTxt != null)
+                boostTxt.text = GetCurrentOfferLabel();
+        }
+
 
         if (Time.time < _nextCheckTime) return;
         _nextCheckTime = Time.time + checkInterval;
@@ -602,8 +644,11 @@ public class PanelGamePlay : UICanvas
     {
         if (HeartWithEnergy.IsAutoBoostingGlobal) return;
 
-        HeartWithEnergy.StartAutoBoost(60f);
+        ApplyCurrentOffer();       
+        SwitchToNextOfferNow();    
     }
+
+
 
     public void ReviewBTN()
     {
@@ -630,5 +675,199 @@ public class PanelGamePlay : UICanvas
 
         buildingBookButtonGO.SetActive(roadIndex >= 1);
     }
+
+    void InitOfferCycle()
+    {
+        _offerIndex = 0;
+        _offerStartTime = Time.unscaledTime;
+        _nextOfferSwitchTime = _offerStartTime + offerSwitchInterval;
+    }
+
+
+    void AdvanceOfferIfNeeded()
+    {
+        if (Time.unscaledTime < _nextOfferSwitchTime) return;
+
+        _offerIndex = (_offerIndex + 1) % offerCycle.Length;
+
+        _offerStartTime = Time.unscaledTime;
+        _nextOfferSwitchTime = _offerStartTime + offerSwitchInterval;
+
+        UpdateBoostOfferUI();
+    }
+
+
+    BoostOffer CurrentOffer
+    {
+        get
+        {
+            if (offerCycle == null || offerCycle.Length == 0) return BoostOffer.Boost60s;
+            int idx = Mathf.Clamp(_offerIndex, 0, offerCycle.Length - 1);
+            return offerCycle[idx];
+        }
+    }
+
+    string GetCurrentOfferLabel()
+    {
+        switch (CurrentOffer)
+        {
+            case BoostOffer.Boost60s: return "+60s BOOST";
+            case BoostOffer.Rose20:   return "+20 ROSE";
+            case BoostOffer.Heart10:  return "+10 HEART";
+            default:                  return "+60s BOOST";
+        }
+    }
+
+    void UpdateBoostOfferUI()
+    {
+        if (HeartWithEnergy.IsAutoBoostingGlobal)
+        {
+            if (boostTxt != null)
+            {
+                int s = Mathf.CeilToInt(HeartWithEnergy.GetAutoBoostRemaining());
+                boostTxt.text = $"BOOST {s}s";
+            }
+
+            if (offerIconImage != null)
+                offerIconImage.sprite = boostSprite;
+
+            if (boostAdsBtn != null) boostAdsBtn.interactable = false;
+            return;
+        }
+
+        if (boostTxt != null) boostTxt.text = GetCurrentOfferLabel();
+        if (offerIconImage != null) offerIconImage.sprite = GetOfferSprite(CurrentOffer);
+        if (boostAdsBtn != null) boostAdsBtn.interactable = CanApplyCurrentOffer();
+    }
+
+
+    bool CanApplyCurrentOffer()
+    {
+        switch (CurrentOffer)
+        {
+            case BoostOffer.Boost60s:
+                return true;
+
+            case BoostOffer.Rose20:
+                return RoseWallet.Instance != null;
+
+            case BoostOffer.Heart10:
+                return CanAddAnyHeart();
+
+            default:
+                return true;
+        }
+    }
+
+    bool CanAddAnyHeart()
+    {
+        // check cap theo hệ của bạn
+        int cur = (HeartChainManager.Instance != null && HeartChainManager.Instance.hearts != null)
+            ? HeartChainManager.Instance.hearts.Count
+            : 0;
+
+        int max = (GameManager.Instance != null) ? GameManager.Instance.MaxHearts : cur;
+        return cur < max;
+    }
+
+    void ApplyCurrentOffer()
+    {
+        switch (CurrentOffer)
+        {
+            case BoostOffer.Boost60s:
+                HeartWithEnergy.StartAutoBoost(60f);
+                break;
+
+            case BoostOffer.Rose20:
+                RoseWallet.Instance?.AddRose(20);
+                break;
+
+            case BoostOffer.Heart10:
+                AddHeartsUpTo(10);
+                break;
+        }
+
+        _offerStartTime = Time.unscaledTime;
+        _nextOfferSwitchTime = _offerStartTime + offerSwitchInterval;
+    }
+
+    void AddHeartsUpTo(int count)
+    {
+        if (HeartManager.Instance == null) return;
+
+        int added = 0;
+
+        int before = (HeartChainManager.Instance != null && HeartChainManager.Instance.hearts != null)
+            ? HeartChainManager.Instance.hearts.Count
+            : 0;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (!CanAddAnyHeart()) break;
+
+            int b = (HeartChainManager.Instance != null && HeartChainManager.Instance.hearts != null)
+                ? HeartChainManager.Instance.hearts.Count
+                : 0;
+
+            HeartManager.Instance.AddHeart();
+
+            int a = (HeartChainManager.Instance != null && HeartChainManager.Instance.hearts != null)
+                ? HeartChainManager.Instance.hearts.Count
+                : b;
+
+            if (a > b) added++;
+            else break; // AddHeart không thành công
+        }
+
+        if (added > 0)
+        {
+            RefreshHeartCapUI();
+            RefreshAddHeartIcon();
+            ForceRefreshMergeButton();
+            GameManager.Instance?.RefreshLapPreview();
+        }
+    }
+
+    void UpdateBoostFill()
+    {
+        if (boostFillImage == null) return;
+
+        // Khi đang auto boost → fill full
+        if (HeartWithEnergy.IsAutoBoostingGlobal)
+        {
+            boostFillImage.fillAmount = 1f;
+            return;
+        }
+
+        float elapsed = Time.unscaledTime - _offerStartTime;
+        float t = Mathf.Clamp01(elapsed / offerSwitchInterval);
+
+        // Fill giảm dần
+        boostFillImage.fillAmount = 1f - t;
+    }
+
+    Sprite GetOfferSprite(BoostOffer offer)
+    {
+        switch (offer)
+        {
+            case BoostOffer.Boost60s: return boostSprite;
+            case BoostOffer.Rose20:   return roseSprite;
+            case BoostOffer.Heart10:  return heartSprite;
+            default: return boostSprite;
+        }
+    }
+    void SwitchToNextOfferNow()
+    {
+        if (offerCycle == null || offerCycle.Length == 0) return;
+
+        _offerIndex = (_offerIndex + 1) % offerCycle.Length;
+
+        _offerStartTime = Time.unscaledTime;
+        _nextOfferSwitchTime = _offerStartTime + offerSwitchInterval;
+
+        UpdateBoostOfferUI();     
+        UpdateBoostFill();        
+    }
+
 
 }

@@ -41,7 +41,7 @@ MonoBehaviour:
     spineAsset: {fileID: 11400000, guid: 156d5a8d5d82d402f99527651486ab68, type: 2}
     loopAnimation: animation
     loop: 1
-    lockedPhoto: {fileID: 21300000, guid: 198cd6f78663a498d81697cd0e3dd24e, type: 3}
+    lockedPhoto: {fileID: 21300000, guid: bdc6e7bb518b74cc9886d26ae79350c0, type: 3}
     comment: I want you, plain and simple.
     requiredLevel: 8
   - photoId: p3

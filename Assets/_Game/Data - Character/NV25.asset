@@ -41,7 +41,7 @@ MonoBehaviour:
     spineAsset: {fileID: 11400000, guid: f37362bea61a64509968c82f9e0dbca8, type: 2}
     loopAnimation: animation
     loop: 1
-    lockedPhoto: {fileID: 21300000, guid: 198cd6f78663a498d81697cd0e3dd24e, type: 3}
+    lockedPhoto: {fileID: 21300000, guid: bdc6e7bb518b74cc9886d26ae79350c0, type: 3}
     comment: "I can\u2019t focus when you\u2019re around."
     requiredLevel: 8
   - photoId: p3
