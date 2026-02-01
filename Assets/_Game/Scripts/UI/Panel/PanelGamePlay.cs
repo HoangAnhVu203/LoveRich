@@ -650,6 +650,7 @@ public class PanelGamePlay : UICanvas
 
         ApplyCurrentOffer();
         AdvanceOfferImmediate();
+        SwitchToNextOfferNow();
     }
 
 
@@ -726,10 +727,33 @@ public class PanelGamePlay : UICanvas
     {
         if (boostTxt == null) return;
 
+        // ================= AUTO BOOST =================
+        if (HeartWithEnergy.IsAutoBoostingGlobal)
+        {
+            int s = Mathf.CeilToInt(HeartWithEnergy.GetAutoBoostRemaining());
+            boostTxt.text = $"BOOST {s}s";
+
+            // offerIconImage là hình riêng → bạn vẫn được quyền đổi sprite
+            if (offerIconImage != null)
+                offerIconImage.sprite = boostSprite;
+
+            // Tắt icon phụ
+            if (roseIconImage != null) roseIconImage.gameObject.SetActive(false);
+            if (heartIconImage != null) heartIconImage.gameObject.SetActive(false);
+
+            if (boostAdsBtn != null)
+                boostAdsBtn.interactable = false;
+
+            return;
+        }
+
+        // ================= NORMAL OFFER =================
+
         // Tắt icon phụ trước
         if (roseIconImage != null) roseIconImage.gameObject.SetActive(false);
         if (heartIconImage != null) heartIconImage.gameObject.SetActive(false);
 
+        // Text + icon phụ
         switch (CurrentOffer)
         {
             case BoostOffer.Boost60s:
@@ -749,9 +773,15 @@ public class PanelGamePlay : UICanvas
                 break;
         }
 
+        // offerIconImage: hình minh hoạ riêng
+        if (offerIconImage != null)
+            offerIconImage.sprite = GetOfferSprite(CurrentOffer);
+
         if (boostAdsBtn != null)
             boostAdsBtn.interactable = CanApplyCurrentOffer();
     }
+
+
 
 
 
