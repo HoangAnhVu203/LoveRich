@@ -67,6 +67,10 @@ public class PanelGamePlay : UICanvas
     [SerializeField] Sprite roseSprite;
     [SerializeField] Sprite heartSprite;
 
+    [Header("Boost Offer Icons (separate)")]
+    [SerializeField] private Image roseIconImage;
+    [SerializeField] private Image heartIconImage;
+
 
 
     [Header("Building Claim Item")]
@@ -644,8 +648,8 @@ public class PanelGamePlay : UICanvas
     {
         if (HeartWithEnergy.IsAutoBoostingGlobal) return;
 
-        ApplyCurrentOffer();       
-        SwitchToNextOfferNow();    
+        ApplyCurrentOffer();
+        AdvanceOfferImmediate();
     }
 
 
@@ -712,33 +716,43 @@ public class PanelGamePlay : UICanvas
         switch (CurrentOffer)
         {
             case BoostOffer.Boost60s: return "+60s BOOST";
-            case BoostOffer.Rose20:   return "+20 ROSE";
-            case BoostOffer.Heart10:  return "+10 HEART";
+            case BoostOffer.Rose20:   return "+20";
+            case BoostOffer.Heart10:  return "+10";
             default:                  return "+60s BOOST";
         }
     }
 
     void UpdateBoostOfferUI()
     {
-        if (HeartWithEnergy.IsAutoBoostingGlobal)
+        if (boostTxt == null) return;
+
+        // Tắt icon phụ trước
+        if (roseIconImage != null) roseIconImage.gameObject.SetActive(false);
+        if (heartIconImage != null) heartIconImage.gameObject.SetActive(false);
+
+        switch (CurrentOffer)
         {
-            if (boostTxt != null)
-            {
-                int s = Mathf.CeilToInt(HeartWithEnergy.GetAutoBoostRemaining());
-                boostTxt.text = $"BOOST {s}s";
-            }
+            case BoostOffer.Boost60s:
+                boostTxt.text = "+60s BOOST";
+                break;
 
-            if (offerIconImage != null)
-                offerIconImage.sprite = boostSprite;
+            case BoostOffer.Rose20:
+                boostTxt.text = "+20";
+                if (roseIconImage != null)
+                    roseIconImage.gameObject.SetActive(true);
+                break;
 
-            if (boostAdsBtn != null) boostAdsBtn.interactable = false;
-            return;
+            case BoostOffer.Heart10:
+                boostTxt.text = "+10";
+                if (heartIconImage != null)
+                    heartIconImage.gameObject.SetActive(true);
+                break;
         }
 
-        if (boostTxt != null) boostTxt.text = GetCurrentOfferLabel();
-        if (offerIconImage != null) offerIconImage.sprite = GetOfferSprite(CurrentOffer);
-        if (boostAdsBtn != null) boostAdsBtn.interactable = CanApplyCurrentOffer();
+        if (boostAdsBtn != null)
+            boostAdsBtn.interactable = CanApplyCurrentOffer();
     }
+
 
 
     bool CanApplyCurrentOffer()
@@ -869,5 +883,13 @@ public class PanelGamePlay : UICanvas
         UpdateBoostFill();        
     }
 
+    void AdvanceOfferImmediate()
+    {
+        _offerIndex = (_offerIndex + 1) % offerCycle.Length;
+        _offerStartTime = Time.unscaledTime;
+        _nextOfferSwitchTime = _offerStartTime + offerSwitchInterval;
+
+        UpdateBoostOfferUI();
+    }
 
 }
