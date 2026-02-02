@@ -76,6 +76,8 @@ public class PanelGamePlay : UICanvas
     [Header("Building Claim Item")]
     [SerializeField] GameObject collectButtonGO;   
     [SerializeField] Button collectButton;  
+    [SerializeField] Text upgradeText;
+
 
     [Header("Building Book UI")]
     [SerializeField] GameObject buildingBookButtonGO;
@@ -85,6 +87,37 @@ public class PanelGamePlay : UICanvas
     [SerializeField] RectTransform addBtnRT;
     [SerializeField] RectTransform mergeBtnRT;
     [SerializeField] RectTransform roseTargetRT; 
+
+    [Header("Upgrade Drain FX")]
+    [SerializeField] RectTransform upgradeTextRT;
+    [SerializeField] CanvasGroup upgradeTextCG;
+    private float upgradeTextMoveY = 200f;
+    private float upgradeTextDuration = 2.0f;
+
+    Vector2 _upgradeTextStartPos;
+    Coroutine _upgradeTextCR;
+
+    [Header("Claim FX")]
+    [SerializeField] RectTransform claimTextRT;
+    [SerializeField] CanvasGroup claimTextCG;
+    [SerializeField] Text claimText;                 
+    private float claimTextMoveY = 200f;
+     private float claimTextDuration = 2.0f;
+
+    Vector2 _claimTextStartPos;
+    Coroutine _claimTextCR;
+
+    [Header("Boost Offer FX (separate)")]
+    [SerializeField] RectTransform boostTextRT;
+    [SerializeField] CanvasGroup boostTextCG;
+    [SerializeField] Text boostText;              
+    private float boostTextMoveY = 200f;
+    private float boostTextDuration = 2.0f;
+
+    Vector2 _boostTextStartPos;
+    Coroutine _boostTextCR;
+
+
 
     // ================= ROTATING BOOST OFFER =================
     private enum BoostOffer
@@ -128,6 +161,33 @@ public class PanelGamePlay : UICanvas
             collectButton.onClick.RemoveAllListeners();
             collectButton.onClick.AddListener(OnCollectClick);
         }
+
+        if (upgradeTextRT != null)
+        _upgradeTextStartPos = upgradeTextRT.anchoredPosition;
+
+        if (upgradeTextCG != null)
+            upgradeTextCG.alpha = 1f;
+
+        if (upgradeTextRT != null)
+            upgradeTextRT.gameObject.SetActive(false);
+
+        if (claimTextRT != null)
+            _claimTextStartPos = claimTextRT.anchoredPosition;
+
+        if (claimTextCG != null)
+            claimTextCG.alpha = 1f;
+
+        if (claimTextRT != null)
+            claimTextRT.gameObject.SetActive(false);
+        if (boostTextRT != null)
+        {
+            _boostTextStartPos = boostTextRT.anchoredPosition;
+            boostTextRT.gameObject.SetActive(false);
+        }
+
+        if (boostTextCG != null)
+            boostTextCG.alpha = 1f;
+
     }
 
     void OnEnable()
@@ -413,9 +473,15 @@ public class PanelGamePlay : UICanvas
         if (energy == null) return;
 
         bool success = energy.TryUpgradeDrain();
-        if (!success) { SetMaxState(); return; }
+
+        if (!success)
+        {
+            SetMaxState();
+            return;
+        }
 
         RefreshState();
+        PlayUpgradeTextFX();
     }
 
     void RefreshState()
@@ -517,6 +583,7 @@ public class PanelGamePlay : UICanvas
         {
             StopPulse();
             if (collectButtonGO != null) collectButtonGO.SetActive(false);
+            ShowClaimText(r.money, r.rose, r.heart, r.boostSeconds);
 
             Debug.Log($"[COLLECT] money+{r.money} rose+{r.rose} heart+{r.heart} boost+{r.boostSeconds}s");
         }
@@ -648,7 +715,12 @@ public class PanelGamePlay : UICanvas
     {
         if (HeartWithEnergy.IsAutoBoostingGlobal) return;
 
+        string msg = GetBoostOfferPopupMessage();
+
         ApplyCurrentOffer();
+
+        PlayBoostTextFX(msg);
+
         AdvanceOfferImmediate();
         SwitchToNextOfferNow();
     }
@@ -716,10 +788,10 @@ public class PanelGamePlay : UICanvas
     {
         switch (CurrentOffer)
         {
-            case BoostOffer.Boost60s: return "+60s BOOST";
+            case BoostOffer.Boost60s: return "+60s Boost";
             case BoostOffer.Rose20:   return "+20";
             case BoostOffer.Heart10:  return "+10";
-            default:                  return "+60s BOOST";
+            default:                  return "+60s Boost";
         }
     }
 
@@ -731,13 +803,11 @@ public class PanelGamePlay : UICanvas
         if (HeartWithEnergy.IsAutoBoostingGlobal)
         {
             int s = Mathf.CeilToInt(HeartWithEnergy.GetAutoBoostRemaining());
-            boostTxt.text = $"BOOST {s}s";
+            boostTxt.text = $"Boost {s}s";
 
-            // offerIconImage là hình riêng → bạn vẫn được quyền đổi sprite
             if (offerIconImage != null)
                 offerIconImage.sprite = boostSprite;
 
-            // Tắt icon phụ
             if (roseIconImage != null) roseIconImage.gameObject.SetActive(false);
             if (heartIconImage != null) heartIconImage.gameObject.SetActive(false);
 
@@ -749,15 +819,14 @@ public class PanelGamePlay : UICanvas
 
         // ================= NORMAL OFFER =================
 
-        // Tắt icon phụ trước
         if (roseIconImage != null) roseIconImage.gameObject.SetActive(false);
         if (heartIconImage != null) heartIconImage.gameObject.SetActive(false);
 
-        // Text + icon phụ
+
         switch (CurrentOffer)
         {
             case BoostOffer.Boost60s:
-                boostTxt.text = "+60s BOOST";
+                boostTxt.text = "+60s Boost";
                 break;
 
             case BoostOffer.Rose20:
@@ -773,7 +842,6 @@ public class PanelGamePlay : UICanvas
                 break;
         }
 
-        // offerIconImage: hình minh hoạ riêng
         if (offerIconImage != null)
             offerIconImage.sprite = GetOfferSprite(CurrentOffer);
 
@@ -805,7 +873,6 @@ public class PanelGamePlay : UICanvas
 
     bool CanAddAnyHeart()
     {
-        // check cap theo hệ của bạn
         int cur = (HeartChainManager.Instance != null && HeartChainManager.Instance.hearts != null)
             ? HeartChainManager.Instance.hearts.Count
             : 0;
@@ -860,7 +927,7 @@ public class PanelGamePlay : UICanvas
                 : b;
 
             if (a > b) added++;
-            else break; // AddHeart không thành công
+            else break;
         }
 
         if (added > 0)
@@ -921,5 +988,156 @@ public class PanelGamePlay : UICanvas
 
         UpdateBoostOfferUI();
     }
+
+    void PlayUpgradeTextFX()
+    {
+        if (upgradeTextRT == null || upgradeTextCG == null)
+            return;
+
+        if (_upgradeTextCR != null)
+            StopCoroutine(_upgradeTextCR);
+
+        _upgradeTextCR = StartCoroutine(UpgradeTextFX_CR());
+    }
+
+    IEnumerator UpgradeTextFX_CR()
+    {
+        upgradeTextRT.gameObject.SetActive(true);
+        upgradeTextRT.anchoredPosition = _upgradeTextStartPos;
+        upgradeTextCG.alpha = 1f;
+
+        float t = 0f;
+
+        while (t < upgradeTextDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            float p = Mathf.Clamp01(t / upgradeTextDuration);
+
+            // Move up
+            upgradeTextRT.anchoredPosition =
+                _upgradeTextStartPos + Vector2.up * Mathf.Lerp(0f, upgradeTextMoveY, p);
+
+            // Fade out
+            upgradeTextCG.alpha = 1f - p;
+
+            yield return null;
+        }
+
+        // Reset
+        upgradeTextRT.gameObject.SetActive(false);
+        upgradeTextRT.anchoredPosition = _upgradeTextStartPos;
+        upgradeTextCG.alpha = 1f;
+    }
+
+    void ShowClaimText(long money, int rose, int heart, float boostSeconds)
+    {
+        if (claimText == null) return;
+
+        var sb = new System.Text.StringBuilder();
+
+        if (rose > 0) sb.AppendLine($"+ {rose} rose");
+        if (money > 0) sb.AppendLine($"+ {MoneyFormatter.Format(money)} $");
+        if (heart > 0) sb.AppendLine($"+ {heart} heart");
+        if (boostSeconds > 0) sb.AppendLine($"+ {Mathf.RoundToInt(boostSeconds)}s boost");
+
+        if (sb.Length == 0) return;
+
+        claimText.text = sb.ToString().TrimEnd();
+        PlayClaimTextFX();
+    }
+
+    void PlayClaimTextFX()
+    {
+        if (claimTextRT == null || claimTextCG == null) return;
+
+        if (_claimTextCR != null)
+            StopCoroutine(_claimTextCR);
+
+        _claimTextCR = StartCoroutine(ClaimTextFX_CR());
+    }
+
+    IEnumerator ClaimTextFX_CR()
+    {
+        claimTextRT.gameObject.SetActive(true);
+        claimTextRT.anchoredPosition = _claimTextStartPos;
+        claimTextCG.alpha = 1f;
+
+        float t = 0f;
+
+        while (t < claimTextDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            float p = Mathf.Clamp01(t / claimTextDuration);
+
+            claimTextRT.anchoredPosition =
+                _claimTextStartPos + Vector2.up * Mathf.Lerp(0f, claimTextMoveY, p);
+
+            claimTextCG.alpha = 1f - p;
+
+            yield return null;
+        }
+
+        claimTextRT.gameObject.SetActive(false);
+        claimTextRT.anchoredPosition = _claimTextStartPos;
+        claimTextCG.alpha = 1f;
+        _claimTextCR = null;
+    }
+
+    void PlayBoostTextFX(string msg)
+    {
+        if (boostTextRT == null || boostTextCG == null || boostText == null) return;
+
+        boostText.text = msg;
+
+        if (_boostTextCR != null)
+            StopCoroutine(_boostTextCR);
+
+        _boostTextCR = StartCoroutine(BoostTextFX_CR());
+    }
+
+    IEnumerator BoostTextFX_CR()
+    {
+        boostTextRT.gameObject.SetActive(true);
+        boostTextRT.anchoredPosition = _boostTextStartPos;
+        boostTextCG.alpha = 1f;
+
+        float t = 0f;
+
+        while (t < boostTextDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            float p = Mathf.Clamp01(t / boostTextDuration);
+
+            boostTextRT.anchoredPosition =
+                _boostTextStartPos + Vector2.up * Mathf.Lerp(0f, boostTextMoveY, p);
+
+            boostTextCG.alpha = 1f - p;
+
+            yield return null;
+        }
+
+        boostTextRT.gameObject.SetActive(false);
+        boostTextRT.anchoredPosition = _boostTextStartPos;
+        boostTextCG.alpha = 1f;
+    }
+
+    string GetBoostOfferPopupMessage()
+    {
+        if (HeartWithEnergy.IsAutoBoostingGlobal)
+        {
+            int s = Mathf.CeilToInt(HeartWithEnergy.GetAutoBoostRemaining());
+            return $"Boost {s}s";
+        }
+
+        switch (CurrentOffer)
+        {
+            case BoostOffer.Boost60s: return "Boost 60s";
+            case BoostOffer.Rose20:   return "+ 20 rose";
+            case BoostOffer.Heart10:  return "+ 10 heart";
+            default:                  return "Boost";
+        }
+    }
+
+
 
 }
