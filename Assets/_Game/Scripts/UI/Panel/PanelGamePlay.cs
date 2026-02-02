@@ -466,6 +466,17 @@ public class PanelGamePlay : UICanvas
 
     public void OnClickUpgradeDrain()
     {
+
+
+
+
+
+                    AdService.ShowRewarded(
+    onEarned: () => 
+    {
+        // Debug.Log("Earned reward");
+        // // Nếu bạn muốn NextLevelSystem() chạy luôn cả khi earn:
+           
         if (_chain == null) _chain = FindObjectOfType<HeartChainManager>();
         if (_chain == null || _chain.GetLeader() == null) return;
 
@@ -482,6 +493,15 @@ public class PanelGamePlay : UICanvas
 
         RefreshState();
         PlayUpgradeTextFX();
+    },
+    onClosed: () => 
+    {
+        // Debug.Log("Closed (no reward)");
+        // NextLevelSystem();   // chạy khi đóng quảng cáo
+
+    }
+);
+     
     }
 
     void RefreshState()
@@ -631,6 +651,12 @@ public class PanelGamePlay : UICanvas
 
     public void AddHeartBTN()
     {
+
+                AdService.ShowInterstitial(() =>
+{
+    Debug.Log("Interstitial closed");
+});
+
         int before = HeartChainManager.Instance != null
             ? HeartChainManager.Instance.hearts.Count
             : 0;
@@ -652,6 +678,12 @@ public class PanelGamePlay : UICanvas
 
     public void MergeHeartBTN()
     {
+
+                AdService.ShowInterstitial(() =>
+{
+    Debug.Log("Interstitial closed");
+});
+
         HeartManager.Instance.MergeAnyTriple();
         roseFlyFX.Play(addBtnRT, roseTargetRT);
         Refresh();
@@ -673,6 +705,12 @@ public class PanelGamePlay : UICanvas
 
     public void UpgradeRoadBTN()
     {
+
+                AdService.ShowInterstitial(() =>
+{
+    Debug.Log("Interstitial closed");
+});
+
         Debug.Log("[UI] UpgradeRoadBTN clicked");
 
         if (RoadManager.Instance == null)
@@ -713,6 +751,15 @@ public class PanelGamePlay : UICanvas
 
     public void Boost60sBTN()
     {
+
+
+
+            AdService.ShowRewarded(
+    onEarned: () => 
+    {
+        // Debug.Log("Earned reward");
+        // // Nếu bạn muốn NextLevelSystem() chạy luôn cả khi earn:
+         
         if (HeartWithEnergy.IsAutoBoostingGlobal) return;
 
         string msg = GetBoostOfferPopupMessage();
@@ -723,6 +770,18 @@ public class PanelGamePlay : UICanvas
 
         AdvanceOfferImmediate();
         SwitchToNextOfferNow();
+    },
+    onClosed: () => 
+    {
+        // Debug.Log("Closed (no reward)");
+        // NextLevelSystem();   // chạy khi đóng quảng cáo
+
+    }
+);
+        
+
+
+       
     }
 
 
