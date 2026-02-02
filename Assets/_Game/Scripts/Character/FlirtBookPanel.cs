@@ -246,7 +246,15 @@ public class FlirtBookPanel : UICanvas
 
     public void OnLevelUpFreeClicked()
     {
-        if (currentCharacter == null) return;
+
+
+
+                 AdService.ShowRewarded(
+    onEarned: () => 
+    {
+        // Debug.Log("Earned reward");
+        // // Nếu bạn muốn NextLevelSystem() chạy luôn cả khi earn:
+            if (currentCharacter == null) return;
 
         int lv = GetCurrentLevel(currentCharacter);
         if (lv >= CharacterProgressStore.MAX_LEVEL) return;
@@ -265,6 +273,15 @@ public class FlirtBookPanel : UICanvas
         RefreshCurrentUI();
 
         Debug.Log($"[LevelUpFree] {currentCharacter.characterId} -> LEVEL {newLv}");
+    },
+    onClosed: () => 
+    {
+        // Debug.Log("Closed (no reward)");
+        // NextLevelSystem();   // chạy khi đóng quảng cáo
+
+    }
+);
+    
     }
 
 }
