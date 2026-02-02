@@ -4645,7 +4645,7 @@ MonoBehaviour:
   addBtnRT: {fileID: 7995374803415709191}
   mergeBtnRT: {fileID: 1608201005694419600}
   roseTargetRT: {fileID: 1753421431087884044}
-  offerSwitchInterval: 10
+  offerSwitchInterval: 60
   offerCycle: 000000000100000002000000
 --- !u!114 &3599816558085374437
 MonoBehaviour:
