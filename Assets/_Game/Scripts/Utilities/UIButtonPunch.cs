@@ -15,14 +15,14 @@ public class UIButtonPunch : MonoBehaviour
     [SerializeField] bool useUnscaledTime = true;
 
     Coroutine _cr;
-    Vector3 _baseScale;
+    Vector3 _baseScale; // base scale "thật" (không bị tích lũy)
 
     void Awake()
     {
         if (target == null)
             target = transform as RectTransform;
 
-        _baseScale = target.localScale;
+        CacheBaseScale();
 
         var btn = GetComponent<Button>();
         if (btn != null)
@@ -30,6 +30,13 @@ public class UIButtonPunch : MonoBehaviour
             btn.onClick.RemoveListener(Play);
             btn.onClick.AddListener(Play);
         }
+    }
+
+    void OnEnable()
+    {
+        // Nếu bạn có animation/ layout làm thay đổi scale trước khi enable, cache lại
+        CacheBaseScale();
+        if (target != null) target.localScale = _baseScale;
     }
 
     void OnDisable()
@@ -44,14 +51,26 @@ public class UIButtonPunch : MonoBehaviour
             target.localScale = _baseScale;
     }
 
+    void CacheBaseScale()
+    {
+        if (target != null)
+            _baseScale = target.localScale;
+    }
+
     public void Play()
     {
         if (target == null) return;
 
+        // luôn bounce quanh base scale thật
         if (_cr != null)
+        {
             StopCoroutine(_cr);
+            _cr = null;
+        }
 
-        _baseScale = target.localScale;
+        // reset về base trước khi phồng lại (tránh ăn dần)
+        target.localScale = _baseScale;
+
         _cr = StartCoroutine(CoBounce());
     }
 
@@ -60,20 +79,24 @@ public class UIButtonPunch : MonoBehaviour
         Vector3 from = _baseScale;
         Vector3 to = _baseScale * scaleUp;
 
+        float dt;
+
         // ==== SCALE UP ====
         float t = 0f;
         while (t < 1f)
         {
-            t += (useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) / Mathf.Max(0.001f, upTime);
+            dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            t += dt / Mathf.Max(0.001f, upTime);
             target.localScale = Vector3.LerpUnclamped(from, to, EaseOut(t));
             yield return null;
         }
 
-        // ==== SCALE DOWN (nhún nhẹ) ====
+        // ==== SCALE DOWN ====
         t = 0f;
         while (t < 1f)
         {
-            t += (useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) / Mathf.Max(0.001f, downTime);
+            dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            t += dt / Mathf.Max(0.001f, downTime);
             target.localScale = Vector3.LerpUnclamped(to, from, EaseOut(t));
             yield return null;
         }
