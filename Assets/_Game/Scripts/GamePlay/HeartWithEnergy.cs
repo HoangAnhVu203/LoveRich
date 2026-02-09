@@ -70,6 +70,9 @@ public class HeartWithEnergy : MonoBehaviour
 
     public static bool CanManualPress => !IsAutoBoostingGlobal;
 
+    private static bool _lastBoostingGlobal;
+
+
     void Awake()
     {
         _mainCam = Camera.main;
@@ -129,46 +132,37 @@ public class HeartWithEnergy : MonoBehaviour
     {
         FollowSelfForEnergyBar();
 
-                // ===== AutoBoost countdown =====
         if (IsAutoBoostingGlobal && Time.time >= AutoBoostEndTime)
-        {
             IsAutoBoostingGlobal = false;
-        }
 
-        // ===== Input =====
-        // Trong lúc auto boost, bạn muốn "không ấn được" => khóa manual
         bool manualPress = !IsAutoBoostingGlobal && IsPressing();
         bool autoBoost = IsAutoBoostingGlobal;
 
         bool boostingInput = autoBoost || manualPress;
-
         if (boostingInput) _lastPressTime = Time.time;
 
-        // ===== Energy + Speed =====
         if (autoBoost)
         {
-            // AUTO BOOST: boostSpeed luôn bật, KHÔNG tốn energy
             _targetSpeed = boostSpeed;
-
-            // Option 1 (khuyến nghị): vẫn cho refill lên max để UI đẹp
             if (_currentEnergy < maxEnergy)
                 _currentEnergy = Mathf.Min(maxEnergy, _currentEnergy + refillPerSecond * Time.deltaTime);
-
-            // Nếu bạn muốn "giữ nguyên energy hiện tại, không refill" thì bỏ đoạn refill trên.
         }
         else
         {
-            // MANUAL: dùng cơ chế cũ (giữ để boost, tốn energy)
             HandleEnergyAndSpeed(manualPress);
         }
 
-        // ===== Boost state global =====
         bool isBoosting = boostingInput && (autoBoost || _currentEnergy > 0f);
-        // - autoBoost: luôn boost
-        // - manual: chỉ boost khi còn energy
         IsBoostingGlobal = isBoosting;
 
+        if (IsBoostingGlobal != _lastBoostingGlobal)
+        {
+            _lastBoostingGlobal = IsBoostingGlobal;
+            SetAllHeartBoostWind(IsBoostingGlobal);
+        }
+
         UpdateBoostVFX(isBoosting);
+
 
         _currentSpeed = Mathf.Lerp(_currentSpeed, _targetSpeed, speedLerp * Time.deltaTime);
 
@@ -217,7 +211,12 @@ public class HeartWithEnergy : MonoBehaviour
 
     void OnDisable()
     {
-        if (IsBoostingGlobal) IsBoostingGlobal = false;
+        if (IsBoostingGlobal)
+        {
+            IsBoostingGlobal = false;
+            _lastBoostingGlobal = false;
+            SetAllHeartBoostWind(false);
+        }
     }
 
     bool IsPressing()
@@ -340,6 +339,7 @@ public class HeartWithEnergy : MonoBehaviour
 
         IsAutoBoostingGlobal = true;
         AutoBoostEndTime = Time.time + durationSeconds;
+        
     }
 
     public static float GetAutoBoostRemaining()
@@ -352,6 +352,19 @@ public class HeartWithEnergy : MonoBehaviour
     {
         IsAutoBoostingGlobal = false;
         _autoBoostEndTime = 0f;
+
+        
+    }
+
+    static void SetAllHeartBoostWind(bool on)
+    {
+        if (HeartChainManager.Instance == null) return;
+
+        foreach (var heart in HeartChainManager.Instance.hearts)
+        {
+            if (!heart) continue;
+            heart.GetComponent<HeartBoostWind>()?.SetBoosting(on);
+        }
     }
 
 

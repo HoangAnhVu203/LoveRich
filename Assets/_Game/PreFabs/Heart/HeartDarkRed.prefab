@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7213773724840369854}
   - component: {fileID: 7624973478016102208}
   - component: {fileID: 4409238742660474800}
+  - component: {fileID: 7101508451239348314}
   m_Layer: 17
   m_Name: HeartDarkRed
   m_TagString: Heart
@@ -36,6 +37,7 @@ Transform:
   m_Children:
   - {fileID: 6146571382129305618}
   - {fileID: 3564020222576355556}
+  - {fileID: 7620740693965321461}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &6869036710676166123
@@ -133,6 +135,86 @@ MonoBehaviour:
   level: 13
   gateHitVFX: {fileID: 3929242838214068765, guid: 7c0a83160720542228bd32dd9502b7ae, type: 3}
   mergeResultPrefab: {fileID: 2760487587693661533, guid: 85c74a56cb79f4c4bbcb8d95585b0bc3, type: 3}
+--- !u!114 &7101508451239348314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324800974341798637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0957595c4946e4292ab529aa66a4f6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeartBoostWind
+  windPS: {fileID: 3026462032412751273}
+--- !u!1001 &53044438143354573
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5849943336260989055}
+    m_Modifications:
+    - target: {fileID: 972155235069018965, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_Name
+      value: Wind
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+--- !u!198 &3026462032412751273 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3079429212683334500, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+  m_PrefabInstance: {fileID: 53044438143354573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7620740693965321461 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7601580198008648248, guid: ab67e1a6ed44944dfa2ea3556b3cae8d, type: 3}
+  m_PrefabInstance: {fileID: 53044438143354573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5964942279660228601
 PrefabInstance:
   m_ObjectHideFlags: 0

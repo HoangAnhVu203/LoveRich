@@ -171,17 +171,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5045070485148681559, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
+    - target: {fileID: 2325592814788752181, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
+      propertyPath: barRoot
+      value: 
+      objectReference: {fileID: 659315220}
+    - target: {fileID: 2325592814788752181, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
+      propertyPath: energyBar
+      value: 
+      objectReference: {fileID: 234897732}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 616616932631375377, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1430543863}
-    - targetCorrespondingSourceObject: {fileID: 616616932631375377, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1430543862}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
 --- !u!1 &234897731
 GameObject:
@@ -258,11 +259,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234897731}
   m_CullTransparentMesh: 1
---- !u!198 &317570464 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5239629379315510930, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
-  m_PrefabInstance: {fileID: 179499646}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &355425678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dfa90c5f78c424f42a8bd1a09e4554af, type: 3}
@@ -1588,67 +1584,11 @@ Transform:
   - {fileID: 1430543861}
   m_Father: {fileID: 1746358840}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1430543860 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 616616932631375377, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
-  m_PrefabInstance: {fileID: 179499646}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1430543861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1036824281138226755, guid: ec30abd34aa504d889b3a689c1fe3c44, type: 3}
   m_PrefabInstance: {fileID: 179499646}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1430543862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430543860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab197ce049e0447c6ac03cf3f34a2878, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HeartStats
-  type: 0
-  weight: 1
-  moneyValue: 4
-  icon: {fileID: 0}
-  level: 1
-  gateHitVFX: {fileID: 5469316111526689579, guid: dae150b17abce4f718f16fa0891cb8f5, type: 3}
-  mergeResultPrefab: {fileID: 1409707415274802184, guid: 38b460128b04e437bb52c00e5770570b, type: 3}
---- !u!114 &1430543863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430543860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe7ca80f6cb140c0b9605c128403ad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HeartWithEnergy
-  driveMovement: 0
-  path: {fileID: 0}
-  center: {fileID: 0}
-  normalSpeed: 30
-  boostSpeed: 100
-  speedLerp: 5
-  energyBar: {fileID: 234897732}
-  barRoot: {fileID: 659315220}
-  barWorldOffset: {x: 0, y: -1.5, z: 0}
-  maxEnergy: 100
-  drainPerSecond: 50
-  refillPerSecond: 40
-  fadeDelay: 20
-  fadeSpeed: 2
-  fadedAlpha: 0
-  boostVFX: {fileID: 317570464}
-  clearOnStop: 1
-  maxUpgradeCount: 10
-  reducePerUpgrade: 2.5
-  minDrainPerSecond: 5
 --- !u!1 &1499607826
 GameObject:
   m_ObjectHideFlags: 0

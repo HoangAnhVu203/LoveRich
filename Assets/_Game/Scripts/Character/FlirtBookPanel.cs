@@ -17,6 +17,7 @@ public class FlirtBookPanel : UICanvas
     [Header("Photo Button (Lock at Lv4)")]
     [SerializeField] Button cameraBtn;
     [SerializeField] CanvasGroup cameraBtnGroup;
+    [SerializeField] GameObject photoLockTextGO;
     [SerializeField, Range(0f, 1f)] float lockedAlpha = 0.4f;
     [SerializeField, Range(0f, 1f)] float unlockedAlpha = 1f;
     [SerializeField] int photoUnlockLevel = 4;
@@ -136,6 +137,7 @@ public class FlirtBookPanel : UICanvas
     {
         bool unlocked = lv >= photoUnlockLevel;
 
+        // ===== Button =====
         if (cameraBtn != null)
             cameraBtn.interactable = unlocked;
 
@@ -145,7 +147,12 @@ public class FlirtBookPanel : UICanvas
             cameraBtnGroup.interactable = unlocked;
             cameraBtnGroup.blocksRaycasts = unlocked;
         }
+
+        // ===== Lock Text =====
+        if (photoLockTextGO != null)
+            photoLockTextGO.SetActive(!unlocked);
     }
+
 
     void RefreshLevelUpButtonState(int lv)
     {

@@ -511,5 +511,4 @@ public class HeartChainManager : Singleton<HeartChainManager>
             ApplyFallbackFollowSmooth(Time.deltaTime);
         }
     }
-
 }
