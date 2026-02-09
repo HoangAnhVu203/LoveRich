@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Gate : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class Gate : MonoBehaviour
     [SerializeField] int defaultLv = 1;
 
     [SerializeField] float cooldownPerHeart = 0.2f;
+
+    [Header("Gate Light VFX")]
+    [SerializeField] ParticleSystem lightVFX;
+    [SerializeField] float lightDuration = 0.25f;
+
+    Coroutine _lightCR;
+
     readonly Dictionary<int, float> _lastHitTime = new();
 
     public void SetCharacter(string id, int defaultLevel = 1)
@@ -37,6 +45,10 @@ public class Gate : MonoBehaviour
         if (_lastHitTime.TryGetValue(key, out float t) && now - t < cooldownPerHeart)
             return;
         _lastHitTime[key] = now;
+        
+        // ===== Gate Light VFX =====
+        PlayGateLightVFX();
+
 
         // VFX
         if (stats.gateHitVFX != null)
@@ -59,4 +71,26 @@ public class Gate : MonoBehaviour
 
         GameManager.Instance?.RefreshLapPreview();
     }
+
+    void PlayGateLightVFX()
+    {
+        if (!lightVFX) return;
+
+        if (_lightCR != null)
+            StopCoroutine(_lightCR);
+
+        _lightCR = StartCoroutine(GateLightCR());
+    }
+
+    IEnumerator GateLightCR()
+    {
+        lightVFX.Clear(true);
+        lightVFX.Play(true);
+
+        yield return new WaitForSeconds(lightDuration);
+
+        lightVFX.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        _lightCR = null;
+    }
+
 }
